@@ -26,7 +26,7 @@ def log_pressy():
     pressy = models.SensorPressy(
         pressure=pressure,
         temperature=temp,
-        altitude='0:.2f'.format(altitude)
+        altitude='{0:.2f}'.format(altitude)
     )
     session.add(pressy)
     session.commit()
