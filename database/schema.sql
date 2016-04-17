@@ -3,7 +3,7 @@ CREATE TABLE sensor_pressy (
   reading_time timestamp        NOT NULL DEFAULT now(),
   pressure     double precision NOT NULL,
   temperature  double precision NOT NULL,
-  altitude     int              NOT NULL,
+  altitude     decimal          NOT NULL,
   PRIMARY KEY (id)
 );
 
