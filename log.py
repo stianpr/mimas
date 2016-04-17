@@ -23,7 +23,7 @@ def log_pressy():
     pressure = sensor.read_pressure() / 100
     altitude = sensor.read_altitude()
 
-    pressy = models.Pressy(
+    pressy = models.SensorPressy(
         pressure=pressure,
         temperature=temp,
         altitude=altitude
@@ -36,7 +36,7 @@ def log_humy():
     sensor = DHT22()
     humidity, temperature = sensor.get_readings()
 
-    humy = models.Humy(humidity=humidity, temperature=temperature)
+    humy = models.SensorHumy(humidity=humidity, temperature=temperature)
     session.add(humy)
     session.commit()
 
@@ -45,7 +45,7 @@ def log_tempy():
     sensor = DS18B20()
     temperature = sensor.get_temperature()
 
-    tempy = models.Tempy(temperature=temperature)
+    tempy = models.SensorTempy(temperature=temperature)
     session.add(tempy)
     session.commit()
 
