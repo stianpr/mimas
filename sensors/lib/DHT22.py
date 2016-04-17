@@ -71,6 +71,8 @@ class DHT22(object):
 
                 return (humidity, temperature)
 
+        return (None, None)
+
     def get_readings(self):
         self.sensor = self.pi.spi_open(0, SPEED, _3W | _3WN)
 

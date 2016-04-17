@@ -36,7 +36,10 @@ def log_humy():
     sensor = DHT22()
     humidity, temperature = sensor.get_readings()
 
-    humy = models.SensorHumy(humidity=humidity, temperature=temperature)
+    humy = models.SensorHumy(
+        humidity=humidity or 0,
+        temperature=temperature or 0
+    )
     session.add(humy)
     session.commit()
 
