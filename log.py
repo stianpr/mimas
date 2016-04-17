@@ -10,7 +10,7 @@ from sensors.lib.DHT22 import DHT22
 from sensors.lib.DS18B20 import DS18B20
 
 
-engine = create_engine('postgresql://localhost:5432/mimas')
+engine = create_engine('postgresql:///mimas')
 models.Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -26,7 +26,7 @@ def log_pressy():
     pressy = models.SensorPressy(
         pressure=pressure,
         temperature=temp,
-        altitude=altitude
+        altitude='0:.2f'.format(altitude)
     )
     session.add(pressy)
     session.commit()
