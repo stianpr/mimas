@@ -14,7 +14,7 @@ class DS18B20(object):
         f.close()
         return lines
 
-    def read_temperature(self):
+    def get_temperature(self):
         lines = self.read_temp_raw()
         while lines[0].strip()[-3:] != 'YES':
             time.sleep(0.2)
