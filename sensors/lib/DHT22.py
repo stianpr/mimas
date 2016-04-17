@@ -38,7 +38,7 @@ class DHT22(object):
         self.sensor = None
 
     def get_values(self):
-        (c, buf) = self.pi.spi_read(self.dht22, BYTES + 1)
+        (c, buf) = self.pi.spi_read(self.sensor, BYTES + 1)
 
         numbit = 1
         in_bit = 0
