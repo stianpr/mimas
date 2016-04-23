@@ -34,10 +34,7 @@ def log_pressy():
 
 def log_humy():
     sensor = DHT22(17, LED=None, power=None)
-    sensor.trigger()
-
-    humidity = sensor.humidity()
-    temperature = sensor.temperature()
+    humidity, temperature = sensor.get_readings()
 
     humy = models.SensorHumy(
         humidity=humidity or 0,

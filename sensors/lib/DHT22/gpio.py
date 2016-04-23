@@ -191,6 +191,11 @@ class Sensor:
             else:  # Full message received.
                 self.no_response = 0
 
+    def get_readings(self):
+        self.trigger()
+        time.sleep(0.2)
+        return self.rhum, self.temp
+
     def temperature(self):
         """Return current temperature."""
         return self.temp
