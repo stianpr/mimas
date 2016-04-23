@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from database import models
-from sensors.lib.DHT22 import DHT22
+from sensors.lib.DHT22.gpio import Sensor as DHT22
 from sensors.lib.DS18B20 import DS18B20
 
 
@@ -33,8 +33,11 @@ def log_pressy():
 
 
 def log_humy():
-    sensor = DHT22()
-    humidity, temperature = sensor.get_readings()
+    sensor = DHT22(17, LED=None, power=None)
+    sensor.trigger()
+
+    humidity = sensor.humidity()
+    temperature = sensor.temperature()
 
     humy = models.SensorHumy(
         humidity=humidity or 0,

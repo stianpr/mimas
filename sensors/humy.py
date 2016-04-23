@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 from __future__ import unicode_literals
 
-from lib.DHT22 import DHT22
+from lib.DHT22.gpio import Sensor
 
 
-sensor = DHT22()
-humidity, temperature = sensor.get_readings()
+sensor = Sensor(17, LED=None, power=None)
+sensor.trigger()
+
+humidity = sensor.humidity()
+temperature = sensor.temperature()
 
 if humidity:
     print('{}% / {}C'.format(humidity, temperature))
