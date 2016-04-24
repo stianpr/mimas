@@ -1,10 +1,5 @@
-#!/usr/bin/env python
-
 # 2014-07-11 DHT22.py
-
 import time
-import atexit
-
 import pigpio
 
 
@@ -61,8 +56,6 @@ class Sensor:
 
         self.cb = None
 
-        atexit.register(self.cancel)
-
         self.bad_CS = 0  # Bad checksum count.
         self.bad_SM = 0  # Short message count.
         self.bad_MM = 0  # Missing message count.
@@ -85,6 +78,12 @@ class Sensor:
         self.pi.set_watchdog(gpio, 0)  # Kill any watchdogs.
 
         self.cb = self.pi.callback(gpio, pigpio.EITHER_EDGE, self._cb)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args, **kwargs):
+        self.cancel()
 
     def _cb(self, gpio, level, tick):
         """
@@ -242,6 +241,6 @@ class Sensor:
         """Cancel the DHT22 sensor."""
         self.pi.set_watchdog(self.gpio, 0)
 
-        if self.cb != None:
+        if self.cb is not None:
             self.cb.cancel()
             self.cb = None
