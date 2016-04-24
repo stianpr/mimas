@@ -40,7 +40,7 @@ class Sensor(object):
         self.set_count()
 
         speed = self.count / (PULSE_SPEED * self.record_time)
-        rpm = speed * (60 / self.record_time)
+        rpm = speed * 60
 
         self.reset_count()
 
