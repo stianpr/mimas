@@ -20,7 +20,8 @@ sensor = Sensor(gpio=18, record_time=1.0)
 
 
 def delete_oldest():
-    oldest = session.query(models.SensorWind).order_by('created').limit(1)
+    oldest = session.query(models.SensorWind).order_by(
+        models.SensorWind.reading_time).first()
     session.delete(oldest)
     session.commit()
 
