@@ -29,3 +29,12 @@ class SensorTempy(Base):
     id = Column(Integer, primary_key=True)
     reading_time = Column(DateTime, default=datetime.datetime.utcnow)
     temperature = Column(Float, nullable=False)
+
+
+class SensorWind(Base):
+    __tablename__ = 'sensor_wind'
+    id = Column(Integer, primary_key=True)
+    reading_time = Column(DateTime, default=datetime.datetime.utcnow)
+    speed = Column(Float, nullable=False)
+    rpm = Column(Integer, nullable=False)
+    hertz = Column(Float, nullable=False)

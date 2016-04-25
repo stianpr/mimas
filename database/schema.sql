@@ -21,3 +21,12 @@ CREATE TABLE sensor_tempy (
   temperature  double precision NOT NULL,
   PRIMARY KEY (id)
 );
+
+CREATE TABLE sensor_wind (
+  id           SERIAL    NOT NULL,
+  reading_time timestamp NOT NULL DEFAULT now(),
+  speed        decimal   NOT NULL,
+  rpm          integer   NOT NULL,
+  hertz        integer   NOT NULL,
+  PRIMARY KEY (id)
+);
