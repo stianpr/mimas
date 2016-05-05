@@ -36,6 +36,10 @@ class SensorWind(BaseSensor):
     rpm = Column(Integer, nullable=False)
     hertz = Column(Float, nullable=False)
 
+    def __str__(self):
+        return '{:.2f}m/s / {:.0f}rpm / {:.0f}Hz'.format(
+            self.speed, self.rpm, self.hertz)
+
 
 class SensorRain(BaseSensor):
     __tablename__ = 'sensors_rain'

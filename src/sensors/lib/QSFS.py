@@ -1,6 +1,8 @@
 import time
 import pigpio
 
+from database.models import SensorWind
+
 
 PULSE_SPEED = 12  # Pulses pr second (Hz) = 1m/s
 
@@ -45,4 +47,4 @@ class Sensor(object):
 
         self.reset_count()
 
-        return (speed, rpm, hertz)
+        return SensorWind(speed=speed, rpm=rpm, hertz=hertz)
