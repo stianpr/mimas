@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from daemons.daemon import Daemon
 from database.models import SensorHumidity
-from lib.DHT22.gpio import Sensor
+from sensors.DHT22.gpio import Sensor
 
 
 conf = dict(

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from daemons.daemon import Daemon
 from database.models import SensorPressure
-from lib.BMP280 import Sensor
+from sensors.BMP280 import Sensor
 
 
 conf = dict(

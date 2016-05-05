@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from daemons.daemon import Daemon
 from database.models import SensorWind
-from sensors.lib.QSFS import Sensor
+from sensors.QSFS import Sensor
 
 
 conf = dict(
