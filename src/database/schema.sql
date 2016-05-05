@@ -1,24 +1,24 @@
-CREATE TABLE sensors_pressy (
-  id           SERIAL           NOT NULL,
-  reading_time timestamp        NOT NULL DEFAULT now(),
-  pressure     double precision NOT NULL,
-  temperature  double precision NOT NULL,
-  altitude     decimal          NOT NULL,
+CREATE TABLE sensors_pressure (
+  id           SERIAL    NOT NULL,
+  reading_time timestamp NOT NULL DEFAULT now(),
+  pressure     decimal   NOT NULL,
+  temperature  decimal   NOT NULL,
+  altitude     decimal   NOT NULL,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE sensors_humy (
-  id           SERIAL           NOT NULL,
-  reading_time timestamp        NOT NULL DEFAULT now(),
-  humidity     double precision NOT NULL,
-  temperature  double precision NOT NULL,
+CREATE TABLE sensors_humidity (
+  id           SERIAL    NOT NULL,
+  reading_time timestamp NOT NULL DEFAULT now(),
+  humidity     decimal   NOT NULL,
+  temperature  decimal   NOT NULL,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE sensors_tempy (
-  id           SERIAL           NOT NULL,
-  reading_time timestamp        NOT NULL DEFAULT now(),
-  temperature  double precision NOT NULL,
+CREATE TABLE sensors_temperature (
+  id           SERIAL    NOT NULL,
+  reading_time timestamp NOT NULL DEFAULT now(),
+  temperature  decimal   NOT NULL,
   PRIMARY KEY (id)
 );
 

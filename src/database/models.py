@@ -12,21 +12,21 @@ class BaseSensor(Base):
     reading_time = Column(DateTime, default=datetime.datetime.utcnow)
 
 
-class SensorPressy(BaseSensor):
-    __tablename__ = 'sensors_pressy'
+class SensorPressure(BaseSensor):
+    __tablename__ = 'sensors_pressure'
     pressure = Column(Float, nullable=False)
     temperature = Column(Float, nullable=False)
     altitude = Column(Float, nullable=False)
 
 
-class SensorHumy(BaseSensor):
-    __tablename__ = 'sensors_humy'
+class SensorHumidity(BaseSensor):
+    __tablename__ = 'sensors_humidity'
     humidity = Column(Float, nullable=False)
     temperature = Column(Float, nullable=False)
 
 
-class SensorTempy(BaseSensor):
-    __tablename__ = 'sensors_tempy'
+class SensorTemperature(BaseSensor):
+    __tablename__ = 'sensors_temperature'
     temperature = Column(Float, nullable=False)
 
 
