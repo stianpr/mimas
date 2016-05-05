@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-from __future__ import unicode_literals
-
 from daemons.daemon import Daemon
 from database.models import SensorHumidity
 from lib.DHT22.gpio import Sensor

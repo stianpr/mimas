@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-from __future__ import unicode_literals
-
 from daemons.daemon import Daemon
 from database.models import SensorWind
 from sensors.lib.QSFS import Sensor
