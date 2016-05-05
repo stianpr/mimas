@@ -2,6 +2,8 @@
 import time
 import pigpio
 
+from database.models import SensorHumidity
+
 
 class Sensor:
     """
@@ -193,7 +195,7 @@ class Sensor:
     def get_readings(self):
         self.trigger()
         time.sleep(0.2)
-        return self.rhum, self.temp
+        return SensorHumidity(humidity=self.rhum, temperature=self.temp)
 
     def temperature(self):
         """Return current temperature."""
