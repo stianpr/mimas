@@ -25,8 +25,8 @@ class Daemon(object):
 
     def __init__(self, model, sensor, interval):
         self.model = model
-        self.interval = interval
         self.sensor = sensor
+        self.interval = interval
 
         self.always_delete = False
 
@@ -59,4 +59,5 @@ class Daemon(object):
 
             self.create(**readings)
 
-            time.sleep(self.interval)
+            if self.interval:
+                time.sleep(self.interval)
