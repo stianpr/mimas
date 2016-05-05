@@ -1,6 +1,8 @@
 import glob
 import time
 
+from database.models import SensorTemperature
+
 
 class DS18B20(object):
     def __init__(self):
@@ -14,7 +16,9 @@ class DS18B20(object):
         f.close()
         return lines
 
-    def get_temperature(self):
+    def get_readings(self):
+        temperature = None
+
         lines = self.read_temp_raw()
         while lines[0].strip()[-3:] != 'YES':
             time.sleep(0.2)
@@ -23,6 +27,6 @@ class DS18B20(object):
         equals_pos = lines[1].find('t=')
         if equals_pos != -1:
             temp_string = lines[1][equals_pos + 2:]
-            return float(temp_string) / 1000.0
+            temperature = float(temp_string) / 1000.0
 
-        return None
+        return SensorTemperature(temperature=temperature)
