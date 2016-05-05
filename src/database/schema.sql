@@ -31,7 +31,7 @@ CREATE TABLE sensors_wind (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE sensors_rain (
+CREATE TABLE sensors_precipitation (
   id           SERIAL    NOT NULL,
   reading_time timestamp NOT NULL DEFAULT now(),
   total        decimal   NOT NULL,

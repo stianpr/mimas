@@ -18,16 +18,26 @@ class SensorPressure(BaseSensor):
     temperature = Column(Float, nullable=False)
     altitude = Column(Float, nullable=False)
 
+    def __str__(self):
+        return '{}hPA / {}C / {}m'.format(
+            self.pressure, self.temperature, self.altitude)
+
 
 class SensorHumidity(BaseSensor):
     __tablename__ = 'sensors_humidity'
     humidity = Column(Float, nullable=False)
     temperature = Column(Float, nullable=False)
 
+    def __str__(self):
+        return '{}% / {}C'.format(self.humidity, self.temperature)
+
 
 class SensorTemperature(BaseSensor):
     __tablename__ = 'sensors_temperature'
     temperature = Column(Float, nullable=False)
+
+    def __str__(self):
+        return '{}C'.format(self.temperature)
 
 
 class SensorWind(BaseSensor):
@@ -41,6 +51,9 @@ class SensorWind(BaseSensor):
             self.speed, self.rpm, self.hertz)
 
 
-class SensorRain(BaseSensor):
-    __tablename__ = 'sensors_rain'
+class SensorPrecipitation(BaseSensor):
+    __tablename__ = 'sensors_precipitation'
     total = Column(Float, nullable=False)
+
+    def __str__(self):
+        return '{}mm'.format(self.total)
