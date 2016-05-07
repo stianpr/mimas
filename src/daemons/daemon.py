@@ -1,19 +1,6 @@
-#!/usr/bin/env python
-from __future__ import unicode_literals
-
 import time
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-
-from database import models
-
-
-engine = create_engine('postgresql:///mimas')
-models.Base.metadata.bind = engine
-
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
+from database import session
 
 
 class Daemon(object):

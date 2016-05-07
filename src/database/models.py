@@ -57,3 +57,14 @@ class SensorPrecipitation(BaseSensor):
 
     def __str__(self):
         return '{}mm'.format(self.total)
+
+
+class WeatherLog(BaseSensor):
+    __tablename__ = 'weather_log'
+    temperature = Column(Float, nullable=False)
+    pressure = Column(Float, nullable=False)
+    humidity = Column(Float, nullable=False)
+    precipitation = Column(Float, nullable=False)
+    wind_avg = Column(Float, nullable=False)
+    wind_gust = Column(Float, nullable=False)
+    wind_direction = Column(Integer, nullable=False)

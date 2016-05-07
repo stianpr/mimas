@@ -1,59 +1,73 @@
 #!/usr/bin/env python
-from __future__ import unicode_literals
+from sqlalchemy.sql import func
 
-import Adafruit_BMP.BMP280 as BMP280
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-
-from database import models
-from sensors.lib.DHT22.gpio import Sensor as DHT22
-from sensors.lib.DS18B20 import DS18B20
+from database import models, session
 
 
-engine = create_engine('postgresql:///mimas')
-models.Base.metadata.bind = engine
-
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
+LIMIT = 60
 
 
-def log_pressy():
-    sensor = BMP280.BMP280(address=0x76)
-    temp = sensor.read_temperature()
-    pressure = sensor.read_pressure() / 100
-    altitude = sensor.read_altitude()
+def get_temperature():
+    model = models.SensorTemperature
+    return (
+        session
+        .query(func.avg(model.temperature))
+        .limit(LIMIT)
+        .order_by(model.reading_time)
+    )['avg']
 
-    pressy = models.SensorPressy(
-        pressure=pressure,
-        temperature=temp,
-        altitude='{0:.2f}'.format(altitude)
+
+def get_pressure():
+    model = models.SensorPressure
+    return (
+        session
+        .query(func.avg(model.pressure))
+        .limit(LIMIT)
+        .order_by(model.reading_time)
+    )['avg']
+
+
+def get_humidity():
+    model = models.SensorHumidity
+    return (
+        session
+        .query(func.avg(model.humidity))
+        .limit(LIMIT)
+        .order_by(model.reading_time)
+    )['avg']
+
+
+def get_precipitation():
+    model = models.SensorPrecipitation
+    return (
+        session
+        .query(func.sum(model.total))
+        .limit(LIMIT)
+        .order_by(model.reading_time)
+    )['avg']
+
+
+def get_wind():
+    model = models.SensorWind
+    data = (
+        session
+        .query(
+            func.avg(model.total),
+            func.max(model.total),
+        )
+        .limit(LIMIT)
+        .order_by(model.reading_time)
     )
-    session.add(pressy)
-    session.commit()
+    return (data['avg'], data['sum'])
 
 
-def log_humy():
-    sensor = DHT22(17, LED=None, power=None)
-    humidity, temperature = sensor.get_readings()
+log = models.WeatherLog(
+    temperature=get_temperature(),
+    pressure=get_pressure(),
+    humidity=get_humidity(),
+    precipitation=get_precipitation(),
+)
+log.wind_avg, log.wind_gust = get_wind()
 
-    humy = models.SensorHumy(
-        humidity=humidity or 0,
-        temperature=temperature or 0
-    )
-    session.add(humy)
-    session.commit()
-
-
-def log_tempy():
-    sensor = DS18B20()
-    temperature = sensor.get_temperature()
-
-    tempy = models.SensorTempy(temperature=temperature)
-    session.add(tempy)
-    session.commit()
-
-
-if __name__ == '__main__':
-    log_pressy()
-    log_humy()
-    log_tempy()
+session.add(log)
+session.commit()
