@@ -6,7 +6,7 @@ from sensors.DS18B20 import Sensor
 
 conf = dict(
     model=SensorTemperature,
-    sensor=Sensor(address=0x76),
+    sensor=Sensor(),
     interval=1.0
 )
 
