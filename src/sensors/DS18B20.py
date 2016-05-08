@@ -30,3 +30,6 @@ class DS18B20(object):
             temperature = float(temp_string) / 1000.0
 
         return SensorTemperature(temperature='{0:.3f}'.format(temperature))
+
+    def stop(self):
+        return True

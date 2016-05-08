@@ -13,3 +13,6 @@ class Sensor(object):
             temperature='{0:.3f}'.format(self.sensor.read_temperature()),
             altitude='{0:.1f}'.format(self.sensor.read_altitude()),
         )
+
+    def stop(self):
+        return True

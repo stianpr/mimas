@@ -85,7 +85,7 @@ class Sensor:
         return self
 
     def __exit__(self, *args, **kwargs):
-        self.cancel()
+        self.stop()
 
     def _cb(self, gpio, level, tick):
         """
@@ -242,8 +242,8 @@ class Sensor:
         self.pi.set_mode(self.gpio, pigpio.INPUT)
         self.pi.set_watchdog(self.gpio, 200)
 
-    def cancel(self):
-        """Cancel the DHT22 sensor."""
+    def stop(self):
+        """stop the DHT22 sensor."""
         self.pi.set_watchdog(self.gpio, 0)
 
         if self.cb is not None:
