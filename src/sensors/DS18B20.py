@@ -4,7 +4,7 @@ import time
 from database.models import SensorTemperature
 
 
-class DS18B20(object):
+class Sensor(object):
     def __init__(self):
         base_dir = '/sys/bus/w1/devices/'
         device_folder = glob.glob(base_dir + '28*')[0]
