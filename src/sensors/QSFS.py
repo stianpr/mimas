@@ -47,4 +47,4 @@ class Sensor(object):
 
         self.reset_count()
 
-        return SensorWind(speed=speed, rpm=rpm, hertz=hertz)
+        return SensorWind(speed='{0:.2f}'.formst(speed), rpm=rpm, hertz=hertz)

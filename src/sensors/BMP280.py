@@ -9,7 +9,7 @@ class Sensor(object):
 
     def get_readings(self):
         return SensorPressure(
-            pressure=self.sensor.read_pressure() / 100,
-            temperature=self.sensor.read_temperature(),
-            altitude=self.sensor.read_altitude(),
+            pressure='{0:.3f}'.format(self.sensor.read_pressure() / 100.0),
+            temperature='{0:.3f}'.format(self.sensor.read_temperature()),
+            altitude='{0:.1f}'.format(self.sensor.read_altitude()),
         )

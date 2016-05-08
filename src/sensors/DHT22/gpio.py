@@ -195,7 +195,10 @@ class Sensor:
     def get_readings(self):
         self.trigger()
         time.sleep(0.2)
-        return SensorHumidity(humidity=self.rhum, temperature=self.temp)
+        return SensorHumidity(
+            humidity='{0:.3f}'.format(self.rhum),
+            temperature='{0:.3f}'.format(self.temp)
+        )
 
     def temperature(self):
         """Return current temperature."""

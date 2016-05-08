@@ -36,7 +36,7 @@ class Sensor(object):
         self.set_count()
 
         total = self.count * RAIN_PULSE
-        precipitation = SensorPrecipitation(total=total)
+        precipitation = SensorPrecipitation(total='{0:.3f}'.format(total))
 
         self.reset_count()
 

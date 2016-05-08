@@ -29,4 +29,4 @@ class DS18B20(object):
             temp_string = lines[1][equals_pos + 2:]
             temperature = float(temp_string) / 1000.0
 
-        return SensorTemperature(temperature=temperature)
+        return SensorTemperature(temperature='{0:.3f}'.format(temperature))
