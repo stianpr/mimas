@@ -7,12 +7,12 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 
-class BaseSensor(Base):
+class BaseSensor(object):
     id = Column(Integer, primary_key=True)
     reading_time = Column(DateTime, default=datetime.datetime.utcnow)
 
 
-class SensorPressure(BaseSensor):
+class SensorPressure(BaseSensor, Base):
     __tablename__ = 'sensors_pressure'
     pressure = Column(Float, nullable=False)
     temperature = Column(Float, nullable=False)
@@ -23,7 +23,7 @@ class SensorPressure(BaseSensor):
             self.pressure, self.temperature, self.altitude)
 
 
-class SensorHumidity(BaseSensor):
+class SensorHumidity(BaseSensor, Base):
     __tablename__ = 'sensors_humidity'
     humidity = Column(Float, nullable=False)
     temperature = Column(Float, nullable=False)
@@ -32,7 +32,7 @@ class SensorHumidity(BaseSensor):
         return '{}% / {}C'.format(self.humidity, self.temperature)
 
 
-class SensorTemperature(BaseSensor):
+class SensorTemperature(BaseSensor, Base):
     __tablename__ = 'sensors_temperature'
     temperature = Column(Float, nullable=False)
 
@@ -40,7 +40,7 @@ class SensorTemperature(BaseSensor):
         return '{}C'.format(self.temperature)
 
 
-class SensorWind(BaseSensor):
+class SensorWind(BaseSensor, Base):
     __tablename__ = 'sensor_wind'
     speed = Column(Float, nullable=False)
     rpm = Column(Integer, nullable=False)
@@ -51,7 +51,7 @@ class SensorWind(BaseSensor):
             self.speed, self.rpm, self.hertz)
 
 
-class SensorPrecipitation(BaseSensor):
+class SensorPrecipitation(BaseSensor, Base):
     __tablename__ = 'sensors_precipitation'
     total = Column(Float, nullable=False)
 
@@ -59,7 +59,7 @@ class SensorPrecipitation(BaseSensor):
         return '{}mm'.format(self.total)
 
 
-class WeatherLog(BaseSensor):
+class WeatherLog(BaseSensor, Base):
     __tablename__ = 'weather_log'
     temperature = Column(Float, nullable=False)
     pressure = Column(Float, nullable=False)
