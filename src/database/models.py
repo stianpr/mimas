@@ -41,7 +41,7 @@ class SensorTemperature(BaseSensor, Base):
 
 
 class SensorWind(BaseSensor, Base):
-    __tablename__ = 'sensor_wind'
+    __tablename__ = 'sensors_wind'
     speed = Column(Float, nullable=False)
     rpm = Column(Integer, nullable=False)
     hertz = Column(Float, nullable=False)
