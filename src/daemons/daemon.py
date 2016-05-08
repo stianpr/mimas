@@ -31,20 +31,19 @@ class Daemon(object):
         session.delete(oldest)
         session.commit()
 
-    def create(self, *kwargs):
-        data = self.model(**kwargs)
+    def create(self, data):
         session.add(data)
         session.commit()
 
     def run(self):
         while True:
-            readings = self.sensor.get_readings()
+            data = self.sensor.get_readings()
 
             if self.always_delete or self.total >= 120:
                 self.cleanup()
                 self.always_delete = True
 
-            self.create(**readings)
+            self.create(data)
 
             if self.interval:
                 time.sleep(self.interval)
