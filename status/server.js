@@ -4,7 +4,7 @@ var http = require('http');
 
 var app = express();
 var server = http.createServer(app);
-var pg = require('pg');
+var pg = require('pg').native;
 var connString = 'postgres:///mimas';
 
 
@@ -42,24 +42,84 @@ var data = {
 
 setInterval(function () {
     pg.connect(connString, function (err, client, done) {
-      if (err) {
-        return console.error('error fetching client from pool', err);
-      }
+      if (!err) {
+          client.query(
+            'SELECT temperature FROM sensors_temperature ' +
+            'ORDER BY reading_time DESC LIMIT 1',
+                function (err, result) {
+                    done();
 
-      client.query(
-        'SELECT temperature FROM sensors_temperature ' +
-        'ORDER BY reading_time DESC LIMIT 1',
-            function (err, result) {
-                done();
-
-                if (err) {
-                    return console.error('error running query', err);
+                    if (!err) {
+                        data.temperature = result.rows[0].temperature;
+                    }
                 }
-
-                data.temperature = result.rows[0].temperature;
-            }
-        );
+            );
+      }
     });
+
+    pg.connect(connString, function (err, client, done) {
+      if (!err) {
+          client.query(
+            'SELECT humidity FROM sensors_humidity ' +
+            'ORDER BY reading_time DESC LIMIT 1',
+                function (err, result) {
+                    done();
+
+                    if (!err) {
+                        data.humidity = result.rows[0].humidity;
+                    }
+                }
+            );
+      }
+    });
+
+    pg.connect(connString, function (err, client, done) {
+      if (!err) {
+          client.query(
+            'SELECT pressure FROM sensors_pressure ' +
+            'ORDER BY reading_time DESC LIMIT 1',
+                function (err, result) {
+                    done();
+
+                    if (!err) {
+                        data.pressure = result.rows[0].pressure;
+                    }
+                }
+            );
+      }
+    });
+
+    pg.connect(connString, function (err, client, done) {
+      if (!err) {
+          client.query(
+            'SELECT sum(total) as total FROM sensors_rain',
+                function (err, result) {
+                    done();
+
+                    if (!err) {
+                        data.rain = result.rows[0].total;
+                    }
+                }
+            );
+      }
+    });
+
+    pg.connect(connString, function (err, client, done) {
+      if (!err) {
+          client.query(
+            'SELECT avg(wind) as avg, max(wind) FROM sensors_wind',
+                function (err, result) {
+                    done();
+
+                    if (!err) {
+                        data.wind.avg = result.rows[0].avg;
+                        data.winb.gust = result.rows[0].gust;
+                    }
+                }
+            );
+      }
+    });
+
 }, 2000);
 
 wsServer.on('request', function(request) {

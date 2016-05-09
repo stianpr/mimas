@@ -8,7 +8,7 @@ function SensorStatus () {
 };
 
 SensorStatus.prototype.connect = function () {
-    var url = "ws://localhost:3000/";
+    var url = "ws://" + document.URL.substr(7).split('/')[0];
     this.socket = new WebSocket(url, 'sensor-status');
 
     this.socket.onmessage = this.handleWebsocketMessage.bind(this);
