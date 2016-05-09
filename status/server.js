@@ -112,7 +112,7 @@ setInterval(function () {
                     done();
 
                     if (!err) {
-                        data.wind.gust = result.rows[0].gust;
+                        data.wind.gust = result.rows[0].speed;
                     }
                 }
             );
