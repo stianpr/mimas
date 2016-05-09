@@ -1,17 +1,17 @@
 #!/bin/sh
 
 ### BEGIN INIT INFO
-# Provides:          windy
+# Provides:          humy
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Logging data from the wind sensor QSFS
-# Description:       Logging data from the wind sensor QSFS
+# Short-Description: Logging data from the humidity sensor DHT22
+# Description:       Logging data from the humidity sensor DHT22
 ### END INIT INFO
 
 DIR=/home/pi/core/src/daemons
-DAEMON_NAME=windy
+DAEMON_NAME=humy
 DAEMON=$DIR/$DAEMON_NAME.py
 DAEMON_OPTS=""
 DAEMON_USER=root
