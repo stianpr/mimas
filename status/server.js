@@ -107,13 +107,28 @@ setInterval(function () {
     pg.connect(connString, function (err, client, done) {
       if (!err) {
           client.query(
-            'SELECT round(avg(speed), 2) as avg, max(speed) as gust FROM sensors_wind',
+            'SELECT speed FROM sensors_wind ORDER BY speed DESC LIMIT 1',
                 function (err, result) {
                     done();
 
                     if (!err) {
-                        data.wind.avg = result.rows[0].avg;
                         data.wind.gust = result.rows[0].gust;
+                    }
+                }
+            );
+      }
+    });
+
+    pg.connect(connString, function (err, client, done) {
+      if (!err) {
+          client.query(
+              'SELECT speed FROM sensors_wind ' +
+              'ORDER BY reading_time DESC LIMIT 1',
+                function (err, result) {
+                    done();
+
+                    if (!err) {
+                        data.wind.avg = result.rows[0].speed;
                     }
                 }
             );
