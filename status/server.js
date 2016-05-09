@@ -107,7 +107,7 @@ setInterval(function () {
     pg.connect(connString, function (err, client, done) {
       if (!err) {
           client.query(
-            'SELECT avg(wind) as avg, max(wind) as gust FROM sensors_wind',
+            'SELECT avg(speed) as avg, max(speed) as gust FROM sensors_wind',
                 function (err, result) {
                     done();
 
