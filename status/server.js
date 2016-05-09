@@ -92,7 +92,7 @@ setInterval(function () {
     pg.connect(connString, function (err, client, done) {
       if (!err) {
           client.query(
-            'SELECT sum(total) as total FROM sensors_rain',
+            'SELECT sum(total) as total FROM sensors_precipitation',
                 function (err, result) {
                     done();
 
@@ -107,7 +107,7 @@ setInterval(function () {
     pg.connect(connString, function (err, client, done) {
       if (!err) {
           client.query(
-            'SELECT avg(wind) as avg, max(wind) FROM sensors_wind',
+            'SELECT avg(wind) as avg, max(wind) as gust FROM sensors_wind',
                 function (err, result) {
                     done();
 
