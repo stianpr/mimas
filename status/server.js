@@ -113,7 +113,7 @@ setInterval(function () {
 
                     if (!err) {
                         data.wind.avg = result.rows[0].avg;
-                        data.winb.gust = result.rows[0].gust;
+                        data.wind.gust = result.rows[0].gust;
                     }
                 }
             );
