@@ -1,9 +1,11 @@
 import React from 'react';
+import Header from './header';
+
 
 export default React.createClass({
   render: function() {
     return (
-      <h1>Weathers</h1>
+      <Header />
     );
   },
 });
