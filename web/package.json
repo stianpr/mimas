@@ -1,0 +1,28 @@
+{
+  "name": "mimas-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --progress --colors",
+    "http": "./node_modules/http-server/bin/http-server -p 3000 dist"
+  },
+  "author": "Stian Prestholdt",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.9.1",
+    "css-loader": "^0.23.1",
+    "http-server": "^0.9.0",
+    "jsx-loader": "^0.13.2",
+    "react": "^15.1.0",
+    "react-hot-loader": "^1.3.0",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "babel-loader": "^6.2.4"
+  }
+}
