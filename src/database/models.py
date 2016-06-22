@@ -44,7 +44,7 @@ class SensorWind(BaseSensor, Base):
     __tablename__ = 'sensors_wind'
     speed = Column(Float, nullable=False)
     rpm = Column(Integer, nullable=False)
-    hertz = Column(Float, nullable=False)
+    hertz = Column(Integer, nullable=False)
 
     def __str__(self):
         return '{:.2f}m/s / {:.0f}rpm / {:.0f}Hz'.format(
@@ -57,6 +57,14 @@ class SensorPrecipitation(BaseSensor, Base):
 
     def __str__(self):
         return '{}mm'.format(self.total)
+
+
+class SensorDirection(BaseSensor, Base):
+    __tablename__ = 'sensors_direction'
+    direction = Column(Integer, nullable=False)
+
+    def __str__(self):
+        return '{} degress'.format(self.direction)
 
 
 class WeatherLog(BaseSensor, Base):

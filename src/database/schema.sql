@@ -38,6 +38,13 @@ CREATE TABLE sensors_precipitation (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE sensors_direction (
+  id           SERIAL                    NOT NULL,
+  reading_time timestamp with time zone  NOT NULL DEFAULT now(),
+  direction    integer                   NOT NULL,
+  PRIMARY KEY (id)
+);
+
 CREATE TABLE weather_log (
   id             SERIAL                    NOT NULL,
   reading_time   timestamp with time zone  NOT NULL DEFAULT now(),
