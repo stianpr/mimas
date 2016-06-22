@@ -1,5 +1,4 @@
 import spidev
-import time
 
 from database.models import SensorDirection
 
@@ -14,9 +13,8 @@ class Sensor(object):
     Specification:
     http://chinaplccenter.com/support/pdf/Sensor/QS-FX-en.pdf
     """
-    def __init__(self, channel=0, record_time=1.0, volts=5.0):
+    def __init__(self, channel=0, volts=5.0):
         self.channel = channel
-        self.record_time = record_time
         self.volts = self.volts
 
         self.spi = spidev.SpiDev()
@@ -40,8 +38,6 @@ class Sensor(object):
         return ((r[1] & 3) << 8) + r[2]
 
     def get_readings(self):
-        time.sleep(self.record_time)
-
         value = self.get_value()
         volts = (value * self.volts) / 1024
         direction = (volts - 0.4) / 16 * 360
