@@ -5,7 +5,7 @@ import '../sass/header.scss';
 
 export default React.createClass({
   getInitialState () {
-    return { title: 'Weather' };
+    return { title: 'Nilsbu' };
   },
 
   render () {

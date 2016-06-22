@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --progress --colors --inline",
+    "webpack": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --hot --progress --colors --inline",
     "http": "./node_modules/http-server/bin/http-server -p 3000 dist"
   },
   "author": "Stian Prestholdt",
