@@ -44,7 +44,7 @@ def get_precipitation():
         .query(func.sum(model.total))
         .limit(LIMIT)
         .order_by(model.reading_time)
-    )['avg']
+    )['sum']
 
 
 def get_wind():
@@ -58,7 +58,17 @@ def get_wind():
         .limit(LIMIT)
         .order_by(model.reading_time)
     )
-    return (data['avg'], data['sum'])
+    return (data['avg'], data['max'])
+
+
+def get_direction():
+    model = models.SensorDirection
+    return (
+        session
+        .query(func.avg(model.direction))
+        .limit(LIMIT)
+        .order_by(model.reading_time)
+    )['avg']
 
 
 log = models.WeatherLog(
@@ -66,6 +76,7 @@ log = models.WeatherLog(
     pressure=get_pressure(),
     humidity=get_humidity(),
     precipitation=get_precipitation(),
+    wind_direction=get_direction()
 )
 log.wind_avg, log.wind_gust = get_wind()
 
