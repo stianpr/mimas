@@ -15,7 +15,7 @@ class Sensor(object):
     """
     def __init__(self, channel=0, volts=5.0):
         self.channel = channel
-        self.volts = self.volts
+        self.volts = volts
 
         self.spi = spidev.SpiDev()
         self.spi.open(0, 0)
