@@ -59,8 +59,8 @@ def get_wind():
     data = (
         session
         .query(
-            func.avg(model.total),
-            func.max(model.total),
+            func.avg(model.speed),
+            func.max(model.speed),
         )
         .group_by(model.reading_time)
         .order_by(model.reading_time)
