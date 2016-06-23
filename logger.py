@@ -12,8 +12,8 @@ def get_temperature():
     return (
         session
         .query(func.avg(model.temperature))
-        .limit(LIMIT)
         .order_by(model.reading_time)
+        .limit(LIMIT)
     )['avg']
 
 
@@ -22,8 +22,8 @@ def get_pressure():
     return (
         session
         .query(func.avg(model.pressure))
-        .limit(LIMIT)
         .order_by(model.reading_time)
+        .limit(LIMIT)
     )['avg']
 
 
@@ -32,8 +32,8 @@ def get_humidity():
     return (
         session
         .query(func.avg(model.humidity))
-        .limit(LIMIT)
         .order_by(model.reading_time)
+        .limit(LIMIT)
     )['avg']
 
 
@@ -42,8 +42,8 @@ def get_precipitation():
     return (
         session
         .query(func.sum(model.total))
-        .limit(LIMIT)
         .order_by(model.reading_time)
+        .limit(LIMIT)
     )['sum']
 
 
@@ -55,8 +55,8 @@ def get_wind():
             func.avg(model.total),
             func.max(model.total),
         )
-        .limit(LIMIT)
         .order_by(model.reading_time)
+        .limit(LIMIT)
     )
     return (data['avg'], data['max'])
 
@@ -66,8 +66,8 @@ def get_direction():
     return (
         session
         .query(func.avg(model.direction))
-        .limit(LIMIT)
         .order_by(model.reading_time)
+        .limit(LIMIT)
     )['avg']
 
 
