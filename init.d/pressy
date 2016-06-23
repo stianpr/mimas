@@ -10,7 +10,7 @@
 # Description:       Logging data from the pressure sensor BMP280
 ### END INIT INFO
 
-DIR=/home/pi/core/src/daemons
+DIR=/home/pi/core/daemons
 DAEMON_NAME=pressy
 DAEMON=$DIR/$DAEMON_NAME.py
 DAEMON_OPTS=""

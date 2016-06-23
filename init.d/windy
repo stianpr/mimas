@@ -10,7 +10,7 @@
 # Description:       Logging data from the wind sensor QSFS
 ### END INIT INFO
 
-DIR=/home/pi/core/src/daemons
+DIR=/home/pi/core/daemons
 DAEMON_NAME=windy
 DAEMON=$DIR/$DAEMON_NAME.py
 DAEMON_OPTS=""
