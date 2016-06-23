@@ -57,3 +57,49 @@ CREATE TABLE weather_log (
   wind_direction integer                   NOT NULL,
   PRIMARY KEY (id)
 );
+
+
+CREATE FUNCTION notify_trigger () RETURNS trigger AS $$
+DECLARE
+BEGIN
+  PERFORM pg_notify('sensor_change', TG_TABLE_NAME || ',id,' || NEW.id);
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trgr_sensor_pressure_change
+  AFTER INSERT ON
+    sensors_pressure
+  FOR EACH ROW EXECUTE PROCEDURE
+    notify_trigger();
+
+CREATE TRIGGER trgr_sensor_humidity_change
+  AFTER INSERT ON
+    sensors_humidity
+  FOR EACH ROW EXECUTE PROCEDURE
+    notify_trigger();
+
+CREATE TRIGGER trgr_sensor_temperature_change
+  AFTER INSERT ON
+    sensors_temperature
+  FOR EACH ROW EXECUTE PROCEDURE
+    notify_trigger();
+
+CREATE TRIGGER trgr_sensor_wind_change
+  AFTER INSERT ON
+    sensors_wind
+  FOR EACH ROW EXECUTE PROCEDURE
+    notify_trigger();
+
+CREATE TRIGGER trgr_sensor_precipitation_change
+  AFTER INSERT ON
+    sensors_precipitation
+  FOR EACH ROW EXECUTE PROCEDURE
+    notify_trigger();
+
+CREATE TRIGGER trgr_sensor_direction_change
+  AFTER INSERT ON
+    sensors_direction
+  FOR EACH ROW EXECUTE PROCEDURE
+    notify_trigger();
