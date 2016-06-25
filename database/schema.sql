@@ -59,10 +59,51 @@ CREATE TABLE weather_log (
 );
 
 
-CREATE FUNCTION notify_trigger () RETURNS trigger AS $$
+CREATE FUNCTION notify_pressure () RETURNS trigger AS $$
 DECLARE
 BEGIN
-  PERFORM pg_notify('sensor_change', TG_TABLE_NAME || ',id,' || NEW.id);
+  PERFORM pg_notify('sensor_change',  'pressure:' || NEW.pressure);
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE FUNCTION notify_humidity () RETURNS trigger AS $$
+DECLARE
+BEGIN
+  PERFORM pg_notify('sensor_change',  'humidity:' || NEW.humidity);
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION notify_temperature () RETURNS trigger AS $$
+DECLARE
+BEGIN
+  PERFORM pg_notify('sensor_change',  'temperature:' || NEW.temperature);
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION notify_wind () RETURNS trigger AS $$
+DECLARE
+BEGIN
+  PERFORM pg_notify('sensor_change',  'wind:' || NEW.speed);
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION notify_precipitation () RETURNS trigger AS $$
+DECLARE
+BEGIN
+  PERFORM pg_notify('sensor_change',  'precipitation:' || NEW.total);
+  RETURN new;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION notify_direction () RETURNS trigger AS $$
+DECLARE
+BEGIN
+  PERFORM pg_notify('sensor_change',  'direction:' || NEW.direction);
   RETURN new;
 END;
 $$ LANGUAGE plpgsql;
@@ -72,34 +113,34 @@ CREATE TRIGGER trgr_sensor_pressure_change
   AFTER INSERT ON
     sensors_pressure
   FOR EACH ROW EXECUTE PROCEDURE
-    notify_trigger();
+    notify_pressure();
 
 CREATE TRIGGER trgr_sensor_humidity_change
   AFTER INSERT ON
     sensors_humidity
   FOR EACH ROW EXECUTE PROCEDURE
-    notify_trigger();
+    notify_humidity();
 
 CREATE TRIGGER trgr_sensor_temperature_change
   AFTER INSERT ON
     sensors_temperature
   FOR EACH ROW EXECUTE PROCEDURE
-    notify_trigger();
+    notify_temperature();
 
 CREATE TRIGGER trgr_sensor_wind_change
   AFTER INSERT ON
     sensors_wind
   FOR EACH ROW EXECUTE PROCEDURE
-    notify_trigger();
+    notify_wind();
 
 CREATE TRIGGER trgr_sensor_precipitation_change
   AFTER INSERT ON
     sensors_precipitation
   FOR EACH ROW EXECUTE PROCEDURE
-    notify_trigger();
+    notify_precipitation();
 
 CREATE TRIGGER trgr_sensor_direction_change
   AFTER INSERT ON
     sensors_direction
   FOR EACH ROW EXECUTE PROCEDURE
-    notify_trigger();
+    notify_direction();
