@@ -8,7 +8,7 @@ class Daemon(object):
 
     @property
     def total(self):
-        return len(session.query(self.model).all())
+        return session.query(self.model).count()
 
     def __init__(self, model, sensor, interval):
         self.model = model
