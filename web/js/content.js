@@ -7,10 +7,17 @@ import WindDirection from './live/winddirection';
 import Temperature from './live/temperature';
 import Pressure from './live/pressure';
 import Precipitation from './live/precipitation';
+import Humidity from './live/humidity';
 
 import sensorStore from './stores/sensor';
 
-const sensors = ['pressure', 'temperature', 'direction', 'precipitation'];
+const sensors = [
+  'pressure',
+  'temperature',
+  'direction',
+  'precipitation',
+  'humidity',
+];
 
 export default React.createClass({
   componentDidMount () {
@@ -41,6 +48,7 @@ export default React.createClass({
       wind: 0.0,
       gust: 0.0,
       precipitation: 0.0,
+      humidity: 0.0,
     }
   },
 
@@ -58,14 +66,24 @@ export default React.createClass({
             </Component>
           </li>
           <li>
+            <Component name='humidity' title="Fuktighet">
+              <Humidity humidity={this.state.humidity} />
+            </Component>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Component name='precipitation' title="Regn (sist time)">
+              <Precipitation precipitation={this.state.precipitation} />
+            </Component>
+          </li>
+          <li>
             <Component name='pressure' title="Trykk">
               <Pressure pressure={this.state.pressure} />
             </Component>
           </li>
         </ul>
-        <Component name='precipitation' title="Regn (sist time)">
-          <Precipitation precipitation={this.state.precipitation} />
-        </Component>
+
       </div>
     );
   },
