@@ -9,7 +9,7 @@ export default React.createClass({
     return {
       links: [
         {
-          icon: 'ion-ios-partly-sunny',
+          icon: 'ion-ios-pulse',
           title: 'Now',
           active: true,
         },
@@ -19,7 +19,7 @@ export default React.createClass({
           active: false,
         },
         {
-          icon: 'ion-ios-stats',
+          icon: 'ion-ios-partly-sunny',
           title: 'Weather',
           active: false,
         },
