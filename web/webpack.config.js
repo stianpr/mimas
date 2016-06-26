@@ -2,14 +2,14 @@ var path = require('path');
 
 module.exports = {
   entry: {
-    app: [
-      'webpack-dev-server/client?http://192.168.200.120:8080',
-      './js/app.js',
-    ],
+    app: process.env.NODE_ENV === 'production' ?
+      ['./js/app.js'] :
+      ['webpack/hot/dev-server', './js/app.js']
   },
   output: {
-    publicPath: 'http://192.168.200.120:8080/',
-    filename: 'dist/[name].js'
+    publicPath: '/',
+    path: path.resolve(__dirname, process.env.NODE_ENV === 'production' ? './dist/' : './build'),
+    filename: 'app.js'
   },
   module: {
     loaders: [
