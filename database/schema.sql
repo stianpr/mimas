@@ -110,7 +110,7 @@ CREATE FUNCTION notify_precipitation () RETURNS trigger AS $$
 DECLARE
   total decimal;
 BEGIN
-  SELECT INTO gust sum(total) FROM sensors_precipitation;
+  SELECT INTO total sum(total) FROM sensors_precipitation;
   PERFORM pg_notify('sensor_change',  'precipitation:' || total);
   RETURN new;
 END;
