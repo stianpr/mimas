@@ -58,6 +58,19 @@ CREATE TABLE weather_log (
   PRIMARY KEY (id)
 );
 
+DROP TRIGGER IF EXISTS trgr_sensor_pressure_change ON sensors_pressure;
+DROP TRIGGER IF EXISTS trgr_sensor_humidity_change ON sensors_humidity;
+DROP TRIGGER IF EXISTS trgr_sensor_temperature_change ON sensors_temperature;
+DROP TRIGGER IF EXISTS trgr_sensor_wind_change ON sensors_wind;
+DROP TRIGGER IF EXISTS trgr_sensor_precipitation_change ON sensors_precipitation;
+DROP TRIGGER IF EXISTS trgr_sensor_direction_change ON sensors_direction;
+
+DROP FUNCTION IF EXISTS notify_pressure();
+DROP FUNCTION IF EXISTS notify_humidity();
+DROP FUNCTION IF EXISTS notify_temperature();
+DROP FUNCTION IF EXISTS notify_wind();
+DROP FUNCTION IF EXISTS notify_precipitation();
+DROP FUNCTION IF EXISTS notify_direction();
 
 CREATE FUNCTION notify_pressure () RETURNS trigger AS $$
 DECLARE
@@ -66,7 +79,6 @@ BEGIN
   RETURN new;
 END;
 $$ LANGUAGE plpgsql;
-
 
 CREATE FUNCTION notify_humidity () RETURNS trigger AS $$
 DECLARE
@@ -86,8 +98,10 @@ $$ LANGUAGE plpgsql;
 
 CREATE FUNCTION notify_wind () RETURNS trigger AS $$
 DECLARE
+  gust decimal;
 BEGIN
-  PERFORM pg_notify('sensor_change',  'wind:' || NEW.speed);
+  SELECT INTO gust max(speed) FROM sensors_wind;
+  PERFORM pg_notify('sensor_change',  'wind:' || NEW.speed || ',' || gust);
   RETURN new;
 END;
 $$ LANGUAGE plpgsql;
@@ -107,7 +121,6 @@ BEGIN
   RETURN new;
 END;
 $$ LANGUAGE plpgsql;
-
 
 CREATE TRIGGER trgr_sensor_pressure_change
   AFTER INSERT ON
