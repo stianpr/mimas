@@ -4,7 +4,7 @@ from database import session
 
 
 class Daemon(object):
-    MAX_READINGS = 120
+    MAX_READINGS = 3600
 
     @property
     def total(self):
@@ -39,7 +39,7 @@ class Daemon(object):
         while True:
             data = self.sensor.get_readings()
 
-            if self.always_delete or self.total >= 120:
+            if self.always_delete or self.total >= self.MAX_READINGS:
                 self.cleanup()
                 self.always_delete = True
 
