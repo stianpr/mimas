@@ -4,7 +4,7 @@ from database import session
 
 
 class Daemon(object):
-    MAX_READINGS = 3600
+    MAX_READINGS = 3600 / 2
 
     @property
     def total(self):
