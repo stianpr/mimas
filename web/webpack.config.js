@@ -22,6 +22,13 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loaders: ['style', 'css', 'sass']
+            },
+            {
+              test: /\.ttf$/,
+              loader: 'file',
+              query: {
+                name: 'fonts/[hash].[ext]'
+              },
             }
         ]
     }
