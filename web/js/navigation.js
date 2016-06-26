@@ -9,17 +9,17 @@ export default React.createClass({
     return {
       links: [
         {
-          icon: 'cloud',
+          icon: 'ion-ios-partly-sunny',
           title: 'Now',
           active: true,
         },
         {
-          icon: 'image',
+          icon: 'ion-md-image',
           title: 'Snaphots',
           active: false,
         },
         {
-          icon: 'graph',
+          icon: 'ion-ios-stats',
           title: 'Weather',
           active: false,
         },

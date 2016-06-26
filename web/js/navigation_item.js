@@ -7,10 +7,11 @@ export default React.createClass({
   },
 
   render () {
-    const classList = this.props.active ? 'active' : '';
+    const itemClass = this.props.active ? 'active' : '';
+    const iconClasses = 'icon ' + this.props.icon;
     return (
-      <li className={classList}>
-        <span>{this.props.title}</span>
+      <li className={itemClass}>
+        <i className={iconClasses} title={this.props.title}></i>
       </li>
     );
   },
