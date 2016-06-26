@@ -10,7 +10,7 @@ export default React.createClass({
       links: [
         {
           icon: 'cloud',
-          title: 'Weather',
+          title: 'Now',
           active: true,
         },
         {
@@ -20,7 +20,7 @@ export default React.createClass({
         },
         {
           icon: 'graph',
-          title: 'Past',
+          title: 'Weather',
           active: false,
         },
       ]

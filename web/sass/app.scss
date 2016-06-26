@@ -10,6 +10,33 @@ body {
   line-height: 1.5;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.4rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+h3 {
+  font-size: 1.0rem;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   display: flex;
   align-items: stretch;
@@ -23,5 +50,12 @@ body {
   .content {
       flex: 0 1 auto;
       height: 100vh;
+  }
+}
+
+@media (min-width: 769px) {
+  #app {
+    width: 769px;
+    margin: 0 auto;
   }
 }

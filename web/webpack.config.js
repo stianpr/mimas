@@ -1,12 +1,12 @@
 module.exports = {
     entry: {
         app: [
-          'webpack-dev-server/client?http://0.0.0.0:8080',
+          'webpack-dev-server/client?http://192.168.200.120:8080',
           './js/app.js',
         ],
     },
     output: {
-        publicPath: 'http://0.0.0.0:8080/',
+        publicPath: 'http://192.168.200.120:8080/',
         filename: 'dist/[name].js'
     },
     module: {
