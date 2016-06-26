@@ -17,12 +17,14 @@ export default React.createClass({
     setupFixedHeader();
 
     sensors.forEach(sensor => {
-      sensorStore.on(sensor, (data) => {
-        this.setState({sensor: data});
+      sensorStore.on(sensor, data => {
+        let record = {};
+        record[sensor] = data;
+        this.setState(record);
       });
     });
 
-    sensorStore.on('wind', (data) => {
+    sensorStore.on('wind', data => {
       const wind = data.split(',');
       this.setState({
         wind: wind[0],
