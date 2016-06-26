@@ -37,6 +37,27 @@ p {
   padding: 0;
 }
 
+.component {
+  h2, h3, p {
+    text-align: center;
+  }
+
+  h2 {
+    margin: 1.5rem 0;
+  }
+
+  h3 {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  p {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+}
+
+
 #app {
   display: flex;
   align-items: stretch;

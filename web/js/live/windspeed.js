@@ -31,12 +31,12 @@ export default React.createClass({
     return {
       speedText: getSpeedText(this.props.speed) || '',
       gustText: getSpeedText(this.props.gust) || '',
-    }
+    };
   },
 
   render () {
     return (
-      <div className="windspeed">
+      <div className="windspeed component">
         <h2>WIND SPEED</h2>
         <ul>
           <li>
