@@ -1,36 +1,3 @@
-.windspeed {
-  ul {
-    display: flex;
-    margin: 1rem 0;
-
-    li {
-      flex: 1 0 50%;
-
-      p {
-        margin: 0.5rem 0;
-        text-align: center;
-      }
-    }
-  }
-
-  .data {
-    display: flex;
-    align-items: baseline;
-
-    h3, span {
-      flex: 1 0 auto;
-    }
-
-    h3 {
-      text-align: right;
-    }
-
-    span {
-      margin-left: 0.5rem;
-    }
-  }
-}
-
 @media (min-width: 550px) {
   .windspeed {
     width: 70%;

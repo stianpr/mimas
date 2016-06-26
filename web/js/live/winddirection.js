@@ -41,14 +41,10 @@ export default React.createClass({
     };
 
     return (
-      <div className="winddirection component">
-        <h2>WIND DIRECTION</h2>
-        <div className="compass">
-          <h3>{this.state.direction.abbr}</h3>
-          <p>{this.state.direction.text}</p>
-          <div className="arrow" style={directionStyle}></div>
-        </div>
-
+      <div className="compass">
+        <h3>{this.state.direction.abbr}</h3>
+        <p>{this.state.direction.text}</p>
+        <div className="arrow" style={directionStyle}></div>
       </div>
     );
   },

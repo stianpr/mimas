@@ -36,25 +36,22 @@ export default React.createClass({
 
   render () {
     return (
-      <div className="windspeed component">
-        <h2>WIND SPEED</h2>
-        <ul>
-          <li>
-            <div className="data">
-              <h3>{this.props.speed}</h3>
-              <span>m/s</span>
-            </div>
-            <p>{this.state.speedText}</p>
-          </li>
-          <li>
-            <div className="data">
-              <h3>{this.props.gust}</h3>
-              <span>m/s</span>
-            </div>
-            <p>{this.state.gustText}</p>
-          </li>
-        </ul>
-      </div>
+      <ul>
+        <li>
+          <div className="data">
+            <h3>{this.props.speed}</h3>
+            <span>m/s</span>
+          </div>
+          <p>{this.state.speedText}</p>
+        </li>
+        <li>
+          <div className="data">
+            <h3>{this.props.gust}</h3>
+            <span>m/s</span>
+          </div>
+          <p>{this.state.gustText}</p>
+        </li>
+      </ul>
     );
   },
 });

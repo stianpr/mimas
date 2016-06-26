@@ -47,13 +47,28 @@ p {
   padding: 0;
 }
 
+ul {
+  display: flex;
+  margin: 1rem 0;
+
+  li {
+    flex: 1 0 50%;
+
+    p {
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+  }
+}
+
 .component {
   h2, h3, p {
     text-align: center;
   }
 
   h2 {
-    margin: 1.5rem 0;
+    margin: 1.5rem 0 1rem 0;
+    text-transform: uppercase;
   }
 
   h3 {
@@ -64,6 +79,23 @@ p {
   p {
     font-size: 0.8rem;
     line-height: 1.2;
+  }
+
+  .data {
+    display: flex;
+    align-items: baseline;
+
+    h3, span {
+      flex: 1 0 auto;
+    }
+
+    h3 {
+      text-align: right;
+    }
+
+    span {
+      margin-left: 0.5rem;
+    }
   }
 }
 
