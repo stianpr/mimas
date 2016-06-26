@@ -11,7 +11,7 @@ from sensors.QSFS import Sensor
 
 conf = dict(
     model=SensorWind,
-    sensor=Sensor(gpio=18, record_time=1.0),
+    sensor=Sensor(gpio=18, record_time=2.0),
     interval=False
 )
 

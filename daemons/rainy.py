@@ -12,7 +12,7 @@ from sensors.TX11 import Sensor
 conf = dict(
     model=SensorPrecipitation,
     sensor=Sensor(gpio=12),
-    interval=1.0
+    interval=2.0
 )
 
 with Daemon(**conf) as daemon:

@@ -12,7 +12,7 @@ from sensors.BMP280 import Sensor
 conf = dict(
     model=SensorPressure,
     sensor=Sensor(address=0x76),
-    interval=1.0
+    interval=2.0
 )
 
 with Daemon(**conf) as daemon:

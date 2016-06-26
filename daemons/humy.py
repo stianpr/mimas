@@ -12,7 +12,7 @@ from sensors.DHT22.gpio import Sensor
 conf = dict(
     model=SensorHumidity,
     sensor=Sensor(gpio=17, LED=None, power=None),
-    interval=1.0
+    interval=2.0
 )
 
 with Daemon(**conf) as daemon:

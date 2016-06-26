@@ -4,7 +4,7 @@ from sqlalchemy.sql import func
 from database import models, session
 
 
-LIMIT = 60
+LIMIT = 30
 
 
 def get_temperature():
