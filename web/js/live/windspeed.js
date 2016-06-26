@@ -35,18 +35,21 @@ export default React.createClass({
   },
 
   render () {
+    const speed = parseFloat(this.props.speed).toFixed(1);
+    const gust = parseFloat(this.props.gust).toFixed(1);
+
     return (
       <ul>
         <li>
           <div className="data">
-            <h3>{this.props.speed}</h3>
+            <h3>{speed}</h3>
             <span>m/s</span>
           </div>
           <p>{this.state.speedText}</p>
         </li>
         <li>
           <div className="data">
-            <h3>{this.props.gust}</h3>
+            <h3>{gust}</h3>
             <span>m/s</span>
           </div>
           <p>{this.state.gustText}</p>

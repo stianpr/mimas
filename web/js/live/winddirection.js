@@ -31,7 +31,7 @@ function getDirection (degrees) {
 export default React.createClass({
   getInitialState () {
     return {
-      direction: getDirection(this.props.degrees),
+      direction: getDirection(parseInt(this.props.degrees, 10)),
     };
   },
 
