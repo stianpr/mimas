@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../../sass/windspeed.scss';
-
 const speedTexts = [
   {speeds: [0.0, 0.3], text: 'Stille'},
   {speeds: [0.3, 1.5], text: 'Flau vind'},

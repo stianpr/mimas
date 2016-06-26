@@ -6,14 +6,17 @@ import WindSpeed from './live/windspeed';
 import WindDirection from './live/winddirection';
 import Temperature from './live/temperature';
 import Pressure from './live/pressure';
+import Precipitation from './live/precipitation';
 
 import sensorStore from './stores/sensor';
+
+const sensors = ['pressure', 'temperature', 'direction', 'precipitation'];
 
 export default React.createClass({
   componentDidMount () {
     setupFixedHeader();
 
-    ['pressure', 'temperature', 'direction'].forEach(sensor => {
+    sensors.forEach(sensor => {
       sensorStore.on(sensor, (data) => {
         this.setState({sensor: data});
       });
@@ -35,30 +38,32 @@ export default React.createClass({
       direction: 0.0,
       wind: 0.0,
       gust: 0.0,
+      precipitation: 0.0,
     }
   },
 
   render () {
     return (
       <div className="content">
-        <Component name='windspeed' title="Wind speed">
+        <Component name='wind' title="Vind">
           <WindSpeed speed={this.state.wind} gust={this.state.gust} />
-        </Component>
-        <Component name='winddirection' title="Wind direction">
           <WindDirection degrees={this.state.direction} />
         </Component>
         <ul>
           <li>
-            <Component name='temperature' title="Temperature">
+            <Component name='temperature' title="Temperatur">
               <Temperature temperature={this.state.temperature} />
             </Component>
           </li>
           <li>
-            <Component name='pressure' title="Pressure">
+            <Component name='pressure' title="Trykk">
               <Pressure pressure={this.state.pressure} />
             </Component>
           </li>
         </ul>
+        <Component name='precipitation' title="Regn (sist time)">
+          <Precipitation precipitation={this.state.precipitation} />
+        </Component>
       </div>
     );
   },
