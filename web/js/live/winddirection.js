@@ -3,28 +3,27 @@ import React from 'react';
 import '../../sass/winddirection.scss';
 
 const directionTexts = [
-    {directions: [348.75, 11.25], abbr: 'N', text: 'Nord'},
-    {directions: [11.26, 33.75], abbr: 'NNE', text: 'Nord-Nordøst'},
-    {directions: [33.76, 56.25], abbr: 'NE', text: 'Nordøst'},
-    {directions: [56.26, 78.75], abbr: 'ENE', text: 'Øst-Nordøst'},
-    {directions: [78.76, 101.25], abbr: 'E', text: 'Øst'},
-    {directions: [101.26, 123.75], abbr: 'ESE', text: 'Øst Sørøst'},
-    {directions: [123.76, 146.25], abbr: 'SE', text: 'Sørøst'},
-    {directions: [146.26, 168.75], abbr: 'SSE', text: 'Sør-Sørøst'},
-    {directions: [168.76, 191.25], abbr: 'S', text: 'Sør'},
-    {directions: [191.26, 213.75], abbr: 'SSW', text: 'Sør Sørvest'},
-    {directions: [213.76, 236.25], abbr: 'SW', text: 'Sørvest'},
-    {directions: [236.26, 258.75], abbr: 'WSW', text: 'Vest Sørvest'},
-    {directions: [258.76, 281.25], abbr: 'W', text: 'Vest'},
-    {directions: [281.26, 303.75], abbr: 'WNW', text: 'Vest Nordvest'},
-    {directions: [303.76, 326.25], abbr: 'NW', text: 'Nordvest'},
-    {directions: [326.26, 348.75], abbr: 'NNW', text: 'Nord Nordvest'},
+    {direction: 11.25, abbr: 'N', text: 'Nord'},
+    {direction: 33.75, abbr: 'NNE', text: 'Nord-Nordøst'},
+    {direction: 56.25, abbr: 'NE', text: 'Nordøst'},
+    {direction: 78.75, abbr: 'ENE', text: 'Øst-Nordøst'},
+    {direction: 101.25, abbr: 'E', text: 'Øst'},
+    {direction: 123.75, abbr: 'ESE', text: 'Øst Sørøst'},
+    {direction: 146.25, abbr: 'SE', text: 'Sørøst'},
+    {direction: 168.75, abbr: 'SSE', text: 'Sør-Sørøst'},
+    {direction: 191.25, abbr: 'S', text: 'Sør'},
+    {direction: 213.75, abbr: 'SSW', text: 'Sør Sørvest'},
+    {direction: 236.25, abbr: 'SW', text: 'Sørvest'},
+    {direction: 258.75, abbr: 'WSW', text: 'Vest Sørvest'},
+    {direction: 281.25, abbr: 'W', text: 'Vest'},
+    {direction: 303.75, abbr: 'WNW', text: 'Vest Nordvest'},
+    {direction: 326.25, abbr: 'NW', text: 'Nordvest'},
+    {direction: 348.75, abbr: 'NNW', text: 'Nord Nordvest'},
 ];
-
 
 function getDirection (degrees) {
   return directionTexts.find(obj => {
-    return degrees >= obj.directions[0] && degrees <= obj.directions[1];
+    return degrees < obj.direction;
   });
 }
 

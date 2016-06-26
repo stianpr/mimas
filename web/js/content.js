@@ -13,16 +13,28 @@ export default React.createClass({
   componentDidMount () {
     setupFixedHeader();
 
-    sensorStore.on('pressure', (data) => {
+    ['pressure', 'temperature', 'direction'].forEach(sensor => {
+      sensorStore.on(sensor, (data) => {
+        this.setState({sensor: data});
+      });
+    });
+
+    sensorStore.on('wind', (data) => {
+      const wind = data.split(',');
       this.setState({
-        pressure: data
+        wind: wind[0],
+        gust: wind[1],
       });
     });
   },
 
   getInitialState () {
     return {
-      pressure: null,
+      pressure: 0.0,
+      temperature: 0.0,
+      direction: 0.0,
+      wind: 0.0,
+      gust: 0.0,
     }
   },
 
@@ -30,15 +42,15 @@ export default React.createClass({
     return (
       <div className="content">
         <Component name='windspeed' title="Wind speed">
-          <WindSpeed speed="6.3" gust="12.4" />
+          <WindSpeed speed={this.state.wind} gust={this.state.gust} />
         </Component>
         <Component name='winddirection' title="Wind direction">
-          <WindDirection degrees="327.0" />
+          <WindDirection degrees={this.state.direction} />
         </Component>
         <ul>
           <li>
             <Component name='temperature' title="Temperature">
-              <Temperature temperature="19.2" />
+              <Temperature temperature={this.state.temperature} />
             </Component>
           </li>
           <li>

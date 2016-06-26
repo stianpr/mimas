@@ -1,10 +1,7 @@
 import EventEmitter from 'event-emitter';
 
-
 const Sensor = function (url, protocol) {
-  console.log(url, protocol);
   this.socket = new WebSocket(url, protocol);
-
   this.socket.onmessage = this.handleMessage.bind(this);
   this.socket.onclose = this.handleOnClose.bind(this);
 };
