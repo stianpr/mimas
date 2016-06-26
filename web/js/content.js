@@ -7,10 +7,23 @@ import WindDirection from './live/winddirection';
 import Temperature from './live/temperature';
 import Pressure from './live/pressure';
 
+import sensorStore from './stores/sensor';
 
 export default React.createClass({
   componentDidMount () {
     setupFixedHeader();
+
+    sensorStore.on('pressure', (data) => {
+      this.setState({
+        pressure: data
+      });
+    });
+  },
+
+  getInitialState () {
+    return {
+      pressure: null,
+    }
   },
 
   render () {
@@ -22,7 +35,6 @@ export default React.createClass({
         <Component name='winddirection' title="Wind direction">
           <WindDirection degrees="327.0" />
         </Component>
-
         <ul>
           <li>
             <Component name='temperature' title="Temperature">
@@ -31,7 +43,7 @@ export default React.createClass({
           </li>
           <li>
             <Component name='pressure' title="Pressure">
-              <Pressure pressure="1009.2" />
+              <Pressure pressure={this.state.pressure} />
             </Component>
           </li>
         </ul>
