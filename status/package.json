@@ -12,5 +12,8 @@
     "pg": "^4.5.5",
     "websocket": "^1.0.22",
     "ws": "^1.1.0"
+  },
+  "devDependencies": {
+    "event-emitter": "^0.3.4"
   }
 }
