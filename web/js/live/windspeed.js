@@ -25,16 +25,11 @@ function getSpeedText (speed) {
 }
 
 export default React.createClass({
-  getInitialState () {
-    return {
-      speedText: getSpeedText(this.props.speed) || '',
-      gustText: getSpeedText(this.props.gust) || '',
-    };
-  },
-
   render () {
     const speed = parseFloat(this.props.speed).toFixed(1);
     const gust = parseFloat(this.props.gust).toFixed(1);
+    const speedText = getSpeedText(this.props.speed);
+    const gustText = getSpeedText(this.props.gust);
 
     return (
       <ul>
@@ -43,14 +38,14 @@ export default React.createClass({
             <h3>{speed}</h3>
             <span>m/s</span>
           </div>
-          <p>{this.state.speedText}</p>
+          <p>{speedText}</p>
         </li>
         <li>
           <div className="data">
             <h3>{gust}</h3>
             <span>m/s</span>
           </div>
-          <p>{this.state.gustText}</p>
+          <p>{gustText}</p>
         </li>
       </ul>
     );

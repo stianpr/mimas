@@ -28,21 +28,18 @@ function getDirection (degrees) {
 }
 
 export default React.createClass({
-  getInitialState () {
-    return {
-      direction: getDirection(parseInt(this.props.degrees, 10)),
-    };
-  },
-
   render () {
     const directionStyle = {
       transform: `rotate(${this.props.degrees}deg)`,
     };
+    const direction = getDirection(parseInt(this.props.degrees, 10));
+
+    console.log(this.props.degrees, direction);
 
     return (
       <div className="compass">
-        <h3>{this.state.direction.abbr}</h3>
-        <p>{this.state.direction.text}</p>
+        <h3>{direction.abbr}</h3>
+        <p>{direction.text}</p>
         <div className="arrow" style={directionStyle}></div>
       </div>
     );
