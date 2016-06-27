@@ -22,9 +22,15 @@ const directionTexts = [
 ];
 
 function getDirection (degrees) {
-  return directionTexts.find(obj => {
+  const found = directionTexts.find(obj => {
     return degrees < obj.direction;
   });
+
+  if (!found) {
+    return directionTexts[0];
+  }
+
+  return found;
 }
 
 export default React.createClass({
@@ -33,8 +39,6 @@ export default React.createClass({
       transform: `rotate(${this.props.degrees}deg)`,
     };
     const direction = getDirection(parseInt(this.props.degrees, 10));
-
-    console.log(this.props.degrees, direction);
 
     return (
       <div className="compass">
