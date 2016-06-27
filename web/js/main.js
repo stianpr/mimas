@@ -7,7 +7,7 @@ import Content from './content';
 export default React.createClass({
   render: function() {
     return (
-      <div id="app">
+      <div>
         <Header />
         <Navigation />
         <Content />
