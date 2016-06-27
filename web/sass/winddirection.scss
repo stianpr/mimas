@@ -13,6 +13,8 @@
     height: 100%;
     top: 0;
 
+    transition: transform 1s ease-in-out;
+
     &::after {
       position: absolute;
       content: '';
