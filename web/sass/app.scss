@@ -12,6 +12,10 @@ $ionicons-version: 'v3.0';
     src: url('../fonts/Cairo-Regular.ttf');
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -102,9 +106,14 @@ ul {
 
 
 #app {
-  display: flex;
-  align-items: stretch;
-  flex-flow: column;
+  height: 100%;
+
+  & > div {
+    display: flex;
+    align-items: stretch;
+    flex-flow: column;
+    height: 100%;
+  }
 
   header,
   nav {
@@ -112,8 +121,7 @@ ul {
   }
 
   .content {
-      flex: 0 1 auto;
-      height: 100vh;
+    flex: 1 0 auto;
   }
 }
 

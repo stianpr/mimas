@@ -3,27 +3,24 @@ let nav = null;
 let content = null;
 let lastScrollPosition = 0;
 let ticking = false;
-let locked = false;
 
 function handleFixedHeader (scrollPos) {
   const navBounds = nav.getBoundingClientRect();
   const headerBounds = header.getBoundingClientRect();
   const contentBounds = content.getBoundingClientRect();
 
-  if (!locked && scrollPos >= 48) {
+  if (scrollPos >= 48) {
     nav.style.position = 'fixed';
     nav.style.top = '0';
     content.style.paddingTop = '48px';
-
-    locked = true;
   }
-  else if (locked && scrollPos <= 48) {
+  else if (scrollPos <= 48) {
     nav.style.position = 'static';
-    nav.style.top = '';
+    nav.style.top = 'auto';
     content.style.paddingTop = '0';
-
-    locked = false;
   }
+
+  console.log("YO!");
 }
 
 function setup () {
