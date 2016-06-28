@@ -12,16 +12,19 @@ export default React.createClass({
           icon: 'ion-ios-pulse',
           title: 'Now',
           active: true,
+          path: '/',
         },
         {
           icon: 'ion-md-image',
           title: 'Snaphots',
           active: false,
+          path: '/snapshots',
         },
         {
           icon: 'ion-ios-partly-sunny',
           title: 'Weather',
           active: false,
+          path: '/weather'
         },
       ]
     };
@@ -33,7 +36,8 @@ export default React.createClass({
         key={index}
         icon={item.icon}
         title={item.title}
-        active={item.active} />
+        active={item.active}
+        path={item.path} />
     );
     return (
       <nav><ol>{items}</ol></nav>

@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router'
+
 
 
 export default React.createClass({
@@ -11,7 +13,10 @@ export default React.createClass({
     const iconClasses = 'icon ' + this.props.icon;
     return (
       <li className={itemClass}>
-        <i className={iconClasses} title={this.props.title}></i>
+        <Link to={this.props.path} activeClassName='active'
+              onlyActiveOnIndex={true}>
+          <i className={iconClasses} title={this.props.title}></i>
+        </Link>
       </li>
     );
   },

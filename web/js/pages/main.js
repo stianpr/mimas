@@ -1,16 +1,16 @@
 import React from 'react';
-import Header from './header';
-import Navigation from './navigation';
-import Content from './content';
+
+import Header from '../header';
+import Navigation from '../navigation';
 
 
 export default React.createClass({
-  render: function() {
+  render () {
     return (
       <div>
         <Header />
         <Navigation />
-        <Content />
+        {this.props.children}
       </div>
     );
   },

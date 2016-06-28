@@ -1,15 +1,15 @@
 import React from 'react';
 
-import setupFixedHeader from './fixed-header';
-import Component from './component';
-import WindSpeed from './live/windspeed';
-import WindDirection from './live/winddirection';
-import Temperature from './live/temperature';
-import Pressure from './live/pressure';
-import Precipitation from './live/precipitation';
-import Humidity from './live/humidity';
+import setupFixedHeader from '../fixed-header';
+import Component from '../component';
+import WindSpeed from '../live/windspeed';
+import WindDirection from '../live/winddirection';
+import Temperature from '../live/temperature';
+import Pressure from '../live/pressure';
+import Precipitation from '../live/precipitation';
+import Humidity from '../live/humidity';
 
-import sensorStore from './stores/sensor';
+import sensorStore from '../stores/sensor';
 
 const sensors = [
   'pressure',

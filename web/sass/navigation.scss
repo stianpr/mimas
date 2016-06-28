@@ -22,15 +22,21 @@ nav {
 
     li {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: stretch;
       flex: 1 1 33.3%;
       height: calc(3rem - 1px);
-
       text-align: center;
 
-      &.active {
-        border-bottom: solid 3px #042b7e;
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1 0 auto;
+        border-bottom: solid 3px #fff;
+
+        &.active {
+          border-bottom-color: #d83840;
+        }
       }
     }
   }
