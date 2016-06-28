@@ -2,12 +2,12 @@ import React from 'react';
 
 import setupFixedHeader from '../fixed-header';
 import Component from '../component';
-import WindSpeed from '../live/windspeed';
-import WindDirection from '../live/winddirection';
-import Temperature from '../live/temperature';
-import Pressure from '../live/pressure';
-import Precipitation from '../live/precipitation';
-import Humidity from '../live/humidity';
+import WindSpeed from '../sensors/windspeed';
+import WindDirection from '../sensors/winddirection';
+import Temperature from '../sensors/temperature';
+import Pressure from '../sensors/pressure';
+import Precipitation from '../sensors/precipitation';
+import Humidity from '../sensors/humidity';
 
 import sensorStore from '../stores/sensor';
 
