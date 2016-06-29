@@ -1,5 +1,8 @@
 import React from 'react';
 
+import sensorStore from '../stores/sensor';
+
+
 const speedTexts = [
   {speeds: [0.0, 0.3], text: 'Stille'},
   {speeds: [0.3, 1.5], text: 'Flau vind'},
@@ -25,11 +28,33 @@ function getSpeedText (speed) {
 }
 
 export default React.createClass({
+  componentDidMount () {
+    sensorStore.on('wind', data => {
+      const wind = data.split(',');
+      this.setState({
+        speed: wind[0],
+        gust: wind[1],
+      });
+    });
+  },
+
+  shouldComponentUpdate (nextProps, nextState) {
+    return (nextState.speed !== this.state.speed ||
+        nextState.gust !== this.state.gust);
+  },
+
+  getInitialState () {
+    return {
+      speed: 0,
+      gust: 0,
+    };
+  },
+
   render () {
-    const speed = parseFloat(this.props.speed).toFixed(1);
-    const gust = parseFloat(this.props.gust).toFixed(1);
-    const speedText = getSpeedText(this.props.speed);
-    const gustText = getSpeedText(this.props.gust);
+    const speed = parseFloat(this.state.speed).toFixed(1);
+    const gust = parseFloat(this.state.gust).toFixed(1);
+    const speedText = getSpeedText(this.state.speed);
+    const gustText = getSpeedText(this.state.gust);
 
     return (
       <ul>

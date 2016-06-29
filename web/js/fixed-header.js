@@ -19,8 +19,6 @@ function handleFixedHeader (scrollPos) {
     nav.style.top = 'auto';
     content.style.paddingTop = '0';
   }
-
-  console.log("YO!");
 }
 
 function setup () {

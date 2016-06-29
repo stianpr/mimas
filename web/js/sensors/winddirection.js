@@ -1,6 +1,8 @@
 import React from 'react';
 
+import sensorStore from '../stores/sensor';
 import '../../sass/winddirection.scss';
+
 
 const directionTexts = [
     {direction: 11.25, abbr: 'N', text: 'Nord'},
@@ -34,11 +36,25 @@ function getDirection (degrees) {
 }
 
 export default React.createClass({
+  componentDidMount () {
+    sensorStore.on('direction', data => {
+      this.setState({ degrees: data });
+    });
+  },
+
+  shouldComponentUpdate (nextProps, nextState) {
+    return nextState.degrees !== this.state.degrees;
+  },
+
+  getInitialState () {
+    return { degrees: 0 };
+  },
+
   render () {
     const directionStyle = {
-      transform: `rotate(${this.props.degrees}deg)`,
+      transform: `rotate(${this.state.degrees}deg)`,
     };
-    const direction = getDirection(parseInt(this.props.degrees, 10));
+    const direction = getDirection(parseInt(this.state.degrees, 10));
 
     return (
       <div className="compass">
