@@ -28,14 +28,20 @@ function getSpeedText (speed) {
 }
 
 export default React.createClass({
-  componentDidMount () {
-    sensorStore.on('wind', data => {
+  listener: null,
+
+  componentWillMount () {
+    sensorStore.on('wind', this.listener = data => {
       const wind = data.split(',');
       this.setState({
         speed: wind[0],
         gust: wind[1],
       });
     });
+  },
+
+  componentWillUnmount () {
+    sensorStore.off('wind', this.listener);
   },
 
   shouldComponentUpdate (nextProps, nextState) {

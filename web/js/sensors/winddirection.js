@@ -36,10 +36,16 @@ function getDirection (degrees) {
 }
 
 export default React.createClass({
-  componentDidMount () {
-    sensorStore.on('direction', data => {
+  listener: null,
+
+  componentWillMount () {
+    sensorStore.on('direction', this.listener = data => {
       this.setState({ degrees: data });
     });
+  },
+
+  componentWillUnmount () {
+    sensorStore.off('direction', this.listener);
   },
 
   shouldComponentUpdate (nextProps, nextState) {

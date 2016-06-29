@@ -4,10 +4,16 @@ import sensorStore from '../stores/sensor';
 
 
 export default React.createClass({
-  componentDidMount () {
-    sensorStore.on('precipitation', data => {
+  listener: null,
+
+  componentWillMount () {
+    sensorStore.on('precipitation', this.listener = data => {
       this.setState({ precipitation: data });
     });
+  },
+
+  componentWillUnmount () {
+    sensorStore.off('precipitation', this.listener);
   },
 
   shouldComponentUpdate (nextProps, nextState) {
