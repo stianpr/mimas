@@ -91,7 +91,7 @@ log = models.WeatherLog(
 )
 winds = get_wind()
 log.wind_avg = round(winds[0])
-log.wind_gust = round(get_wind())
+log.wind_gust = round(winds[1])
 
 session.add(log)
 session.commit()
