@@ -75,7 +75,7 @@ DROP FUNCTION IF EXISTS notify_direction();
 CREATE FUNCTION notify_pressure () RETURNS trigger AS $$
 DECLARE
 BEGIN
-  PERFORM pg_notify('sensor_change',  'pressure:' || NEW.pressure);
+  PERFORM pg_notify('sensor_change',  'pressure:' || NEW.pressure::integer);
   RETURN new;
 END;
 $$ LANGUAGE plpgsql;
@@ -83,7 +83,7 @@ $$ LANGUAGE plpgsql;
 CREATE FUNCTION notify_humidity () RETURNS trigger AS $$
 DECLARE
 BEGIN
-  PERFORM pg_notify('sensor_change',  'humidity:' || NEW.humidity);
+  PERFORM pg_notify('sensor_change',  'humidity:' || round(NEW.humidity, 1));
   RETURN new;
 END;
 $$ LANGUAGE plpgsql;
@@ -91,7 +91,7 @@ $$ LANGUAGE plpgsql;
 CREATE FUNCTION notify_temperature () RETURNS trigger AS $$
 DECLARE
 BEGIN
-  PERFORM pg_notify('sensor_change',  'temperature:' || NEW.temperature);
+  PERFORM pg_notify('sensor_change',  'temperature:' || round(NEW.temperature, 1));
   RETURN new;
 END;
 $$ LANGUAGE plpgsql;
@@ -108,10 +108,10 @@ $$ LANGUAGE plpgsql;
 
 CREATE FUNCTION notify_precipitation () RETURNS trigger AS $$
 DECLARE
-  total decimal;
+  sumarized decimal;
 BEGIN
-  SELECT INTO total sum(total) FROM sensors_precipitation;
-  PERFORM pg_notify('sensor_change',  'precipitation:' || total);
+  SELECT INTO sumarized COALESCE(sum(total), 0.0) FROM sensors_precipitation;
+  PERFORM pg_notify('sensor_change',  'precipitation:' || sumarized);
   RETURN new;
 END;
 $$ LANGUAGE plpgsql;
