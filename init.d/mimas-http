@@ -12,7 +12,7 @@
 
 DAEMON_NAME=mimas-http
 DAEMON=/usr/local/bin/http-server
-DAEMON_OPTS=/home/pi/core/web/dist
+DAEMON_OPTS="/home/pi/core/web/dist -p 80"
 DAEMON_USER=root
 
 PIDFILE=/var/run/$DAEMON_NAME.pid
