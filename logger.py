@@ -83,13 +83,15 @@ def get_direction():
 
 
 log = models.WeatherLog(
-    temperature=get_temperature(),
-    pressure=get_pressure(),
-    humidity=get_humidity(),
+    temperature=round(get_temperature()),
+    pressure=round(get_pressure()),
+    humidity=round(get_humidity()),
     precipitation=get_precipitation(),
     wind_direction=get_direction()
 )
-log.wind_avg, log.wind_gust = get_wind()
+winds = get_wind()
+log.wind_avg = round(winds[0])
+log.wind_gust = round(get_wind())
 
 session.add(log)
 session.commit()
