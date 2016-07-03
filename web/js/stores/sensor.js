@@ -18,7 +18,7 @@ Sensor.prototype = {
 };
 
 const store = EventEmitter(new Sensor(
-  'ws://192.168.200.128:3000', 'sensor-change'
+  'ws://192.168.1.156:3000', 'sensor-change'
 ));
 
 export default store;
