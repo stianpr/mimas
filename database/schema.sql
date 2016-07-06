@@ -58,6 +58,86 @@ CREATE TABLE weather_log (
   PRIMARY KEY (id)
 );
 
+CREATE OR REPLACE VIEW logger_pressure AS
+  SELECT
+    EXTRACT(hour from reading_time) AS hour,
+    EXTRACT(minute from reading_time) AS minute,
+    avg(pressure)
+  FROM sensors_pressure
+  GROUP BY 1, 2
+  ORDER BY 1 DESC, 2 DESC;
+
+CREATE OR REPLACE VIEW logger_temperature AS
+  SELECT
+    EXTRACT(hour from reading_time) AS hour,
+    EXTRACT(minute from reading_time) AS minute,
+    avg(temperature)
+  FROM sensors_temperature
+  GROUP BY 1, 2
+  ORDER BY 1 DESC, 2 DESC;
+
+CREATE OR REPLACE VIEW logger_humidity AS
+  SELECT
+    EXTRACT(hour from reading_time) AS hour,
+    EXTRACT(minute from reading_time) AS minute,
+    avg(humidity)
+  FROM sensors_humidity
+  GROUP BY 1, 2
+  ORDER BY 1 DESC, 2 DESC;
+
+CREATE OR REPLACE VIEW logger_precipitation AS
+  SELECT
+    EXTRACT(hour from reading_time) AS hour,
+    EXTRACT(minute from reading_time) AS minute,
+    sum(total)
+  FROM sensors_precipitation
+  GROUP BY 1, 2
+  ORDER BY 1 DESC, 2 DESC;
+
+CREATE OR REPLACE VIEW logger_wind AS
+  SELECT
+    EXTRACT(hour from reading_time) AS hour,
+    EXTRACT(minute from reading_time) AS minute,
+    avg(speed),
+    max(speed)
+  FROM sensors_wind
+  GROUP BY 1, 2
+  ORDER BY 1 DESC, 2 DESC;
+
+CREATE OR REPLACE VIEW logger_direction AS
+  SELECT
+    EXTRACT(hour from reading_time) AS hour,
+    EXTRACT(minute from reading_time) AS minute,
+    avg(direction)
+  FROM sensors_direction
+  GROUP BY 1, 2
+  ORDER BY 1 DESC, 2 DESC;
+
+CREATE OR REPLACE VIEW logger_all AS
+  SELECT
+    p.hour,
+    p.minute,
+    round(p.avg, 2) as pressure,
+    round(t.avg, 2) as temperature,
+    round(h.avg, 2) as humidity,
+    round(r.sum, 2) as precipitation,
+    round(w.avg, 2) as wind_avg,
+    round(w.max, 2) as wind_gust,
+    round(d.avg) as wind_direction
+  FROM logger_pressure p
+    INNER JOIN logger_temperature t
+      ON p.hour = t.hour AND p.minute = t.minute
+    INNER JOIN logger_humidity h
+      ON p.hour = h.hour AND p.minute = h.minute
+    INNER JOIN logger_precipitation r
+      ON p.hour = r.hour AND p.minute = r.minute
+    INNER JOIN logger_wind w
+      ON p.hour = w.hour AND p.minute = w.minute
+    INNER JOIN logger_direction d
+      ON p.hour = d.hour AND p.minute = d.minute
+  ORDER BY 1 DESC, 2 DESC;
+
+
 DROP TRIGGER IF EXISTS trgr_sensor_pressure_change ON sensors_pressure;
 DROP TRIGGER IF EXISTS trgr_sensor_humidity_change ON sensors_humidity;
 DROP TRIGGER IF EXISTS trgr_sensor_temperature_change ON sensors_temperature;
