@@ -1,0 +1,14 @@
+.snapshot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+
+  h2 {
+    margin: 1rem 0;
+  }
+
+  img {
+    width: 90%;
+  }
+}
