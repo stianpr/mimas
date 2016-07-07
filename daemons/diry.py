@@ -11,7 +11,7 @@ from sensors.QSFX import Sensor
 
 conf = dict(
     model=SensorDirection,
-    sensor=Sensor(channel=0, volts=5.0),
+    sensor=Sensor(channel=0),
     interval=2.0
 )
 

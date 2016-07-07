@@ -13,7 +13,7 @@ class Sensor(object):
     Specification:
     http://chinaplccenter.com/support/pdf/Sensor/QS-FX-en.pdf
     """
-    def __init__(self, channel=0, volts=5.0):
+    def __init__(self, channel=0, volts=2.0):
         self.channel = channel
         self.volts = volts
 
@@ -37,6 +37,6 @@ class Sensor(object):
     def get_readings(self):
         value = self.get_value()
         volts = (value * self.volts) / 1024
-        direction = (volts - 0.4) / 16 * 360 if volts > 0 else 0
+        direction = (volts - 0.389) / 16 * 360 if volts > 0 else 0
 
-        return SensorDirection(direction=direction * 10)
+        return SensorDirection(direction=max(0, min(direction * 10, 360)))
