@@ -8,11 +8,19 @@ import Temperature from '../sensors/temperature';
 import Pressure from '../sensors/pressure';
 import Precipitation from '../sensors/precipitation';
 import Humidity from '../sensors/humidity';
-
+import sensorStore from '../stores/sensor';
 
 export default React.createClass({
   componentDidMount () {
     setupFixedHeader();
+  },
+
+  componentWillMount () {
+    sensorStore.connect();
+  },
+
+  componentWillUnmount () {
+    sensorStore.disconnect();
   },
 
   render () {
