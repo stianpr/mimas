@@ -1,0 +1,123 @@
+# check services at 2-minute intervals
+set daemon 60
+
+# the monit logfile
+set logfile /var/log/monit.log
+set idfile /var/lib/monit/monit.id
+set statefile /var/lib/monit/state
+
+# mailserver used to send the alert mails
+set mailserver localhost
+
+# activate the eventqueue to store events/alerts if the mailserver is
+# currently unavailable
+set eventqueue
+    # set the base directory where events will be stored
+    basedir /var/lib/monit/events
+    # optionally limit the queue size
+    slots 100
+
+# set the alert recipients
+# reminder ->
+# http://mmonit.com/monit/documentation/monit.html#setting_an_error_reminder
+# please set email address to recive the alert mails
+set alert stian@prestholdt.no with reminder on 10 cycles
+
+# start the build-in webserver and listen on all ips port 2812
+# allow access to admin with password monit
+set httpd port 2812 and
+    use address 0.0.0.0
+    allow localhost
+    allow 192.168.200.0/8
+    allow admin:monit
+
+# check the local system <<your hostname>>
+check system mimas.home
+    if loadavg (1min) > 5 then alert
+    if loadavg (5min) > 3 then alert
+    if memory usage > 75% then alert
+    if swap usage > 25% then alert
+    if cpu usage (user) > 70% then alert
+    if cpu usage (system) > 30% then alert
+    if cpu usage (wait) > 30% then alert
+
+# local fs system check
+check filesystem rootfs with path /
+    if space > 90% then alert
+    if inodes > 90% then alert
+
+check process postgresql with pidfile /var/run/postgresql/9.4-main.pid
+    group postgresql
+    start program = "/etc/init.d/postgresql start"
+    stop  program = "/etc/init.d/postgresql stop"
+    if failed unixsocket /var/run/postgresql/.s.PGSQL.5432 protocol pgsql then restart
+    if failed unixsocket /var/run/postgresql/.s.PGSQL.5432 protocol pgsql then alert
+    if failed host localhost port 5432 protocol pgsql then restart
+    if failed host localhost port 5432 protocol pgsql then alert
+    if 5 restarts within 5 cycles then timeout
+
+check process pigpiod with pidfile /var/run/pigpio.pid
+    group system
+    start program = "/etc/init.d/pigpiod start"
+    stop  program = "/etc/init.d/pigpiod stop"
+
+check process cron with pidfile /var/run/crond.pid
+   group system
+   start program = "/etc/init.d/cron start"
+   stop  program = "/etc/init.d/cron stop"
+
+check process sshd with pidfile /var/run/sshd.pid
+    group system
+    start program = "/etc/init.d/ssh start"
+    stop  program = "/etc/init.d/ssh stop"
+    if failed port 22 protocol ssh then restart
+
+check process motion with pidfile /var/run/motion/motion.pid
+    group system
+    start program = "/etc/init.d/motion start"
+    stop  program = "/etc/init.d/motion stop"
+
+check process humy with pidfile /var/run/humy.pid
+    group system
+    start program = "/etc/init.d/humy start"
+    stop  program = "/etc/init.d/humy stop"
+
+check process pressy with pidfile /var/run/pressy.pid
+    group system
+    start program = "/etc/init.d/pressy start"
+    stop  program = "/etc/init.d/pressy stop"
+
+check process rainy with pidfile /var/run/rainy.pid
+    group system
+    start program = "/etc/init.d/rainy start"
+    stop  program = "/etc/init.d/rainy stop"
+
+check process tempy with pidfile /var/run/tempy.pid
+    group system
+    start program = "/etc/init.d/tempy start"
+    stop  program = "/etc/init.d/tempy stop"
+
+check process windy with pidfile /var/run/windy.pid
+    group system
+    start program = "/etc/init.d/windy start"
+    stop  program = "/etc/init.d/windy stop"
+
+check process diry with pidfile /var/run/diry.pid
+    group system
+    start program = "/etc/init.d/diry start"
+    stop  program = "/etc/init.d/diry stop"
+
+check process ws-sensors with pidfile /var/run/ws-sensors.pid
+    group system
+    start program = "/etc/init.d/ws-sensors start"
+    stop  program = "/etc/init.d/ws-sensors stop"
+
+check process mimas-http with pidfile /var/run/mimas-http.pid
+    group system
+    start program = "/etc/init.d/mimas-http start"
+    stop  program = "/etc/init.d/mimas-http stop"
+
+check network wlan0 with interface wlan0
+    start program = "/sbin/ifup wlan0"
+    stop  program = "/sbin/ifdown wlan0"
+    if failed link then restart
