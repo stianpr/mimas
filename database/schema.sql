@@ -58,6 +58,17 @@ CREATE TABLE weather_log (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE motion_log (
+  id         SERIAL NOT NULL,
+  camera     integer,
+  filename   text,
+  frame      integer,
+  file_type  integer,
+  time_stamp timestamp with time zone,
+  text_event text,
+  PRIMARY KEY (id)
+);
+
 CREATE OR REPLACE VIEW logger_pressure AS
   SELECT
     EXTRACT(hour from reading_time) AS hour,
