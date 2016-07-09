@@ -59,13 +59,13 @@ CREATE TABLE weather_log (
 );
 
 CREATE TABLE motion_log (
-  id         SERIAL NOT NULL,
-  camera     integer,
-  filename   text,
-  frame      integer,
-  file_type  integer,
-  time_stamp timestamp with time zone,
-  text_event text,
+  id               SERIAL NOT NULL,
+  camera           integer,
+  filename         text not null,
+  frame            integer,
+  file_type        integer,
+  time_stamp       timestamp with time zone,
+  event_time_stamp timestamp with time zone,
   PRIMARY KEY (id)
 );
 
