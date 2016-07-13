@@ -20,10 +20,11 @@ def post_data(data, filepath):
 def get_picture_data(filepath):
     filename = os.path.basename(filepath)
     name, ext = os.path.splitext(filename)
-    camera, timestamp, frame = name.split('-')
+    camera, event, timestamp, frame = name.split('-')
     created = datetime.strptime(timestamp, '%Y%m%d%H%M%S').isoformat()
     return {
         'camera': camera,
+        'event': event,
         'frame': frame,
         'created': created.replace('T', ' ')
     }
