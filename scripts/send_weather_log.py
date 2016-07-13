@@ -14,15 +14,14 @@ ENDPOINT_URL = 'http://nilsbu.no/api/weather/'
 
 def get_last_sent():
     model = models.WeatherSent
-    return session.query(model).order_by(model.last_sent_id).desc().first()
+    return session.query(model).order_by(model.last_sent_id.desc()).first()
 
 
 def get_weather_data():
     last_sent = get_last_sent()
+    last_sent_id = last_sent.last_sent_id if last_sent else 0
     model = models.WeatherLog
-    return session.query(model).where(
-        model.id > last_sent.last_sent_id
-    ).order_by(model.id).all()
+    return session.query(model).filter(model.id > str(last_sent_id)).all()
 
 
 def main():
@@ -33,7 +32,7 @@ def main():
         data.append(weather.to_dict())
         last_id = weather.id
 
-    response = requests.post(ENDPOINT_URL, data=data)
+    response = requests.post(ENDPOINT_URL, json=data)
     if response.status_code == requests.codes.created:
         weather_sent.last_sent_id = last_id
         session.add(weather_sent)

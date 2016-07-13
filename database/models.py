@@ -79,7 +79,7 @@ class WeatherLog(BaseSensor, Base):
 
     def to_dict(self):
         return {
-            'reading_date': self.reading_time,
+            'reading_date': self.reading_time.isoformat(),
             'outdoor_humidity': self.humidity,
             'outdoor_temp': self.temperature,
             'abs_pressure': self.pressure,
