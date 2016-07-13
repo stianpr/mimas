@@ -90,7 +90,8 @@ class WeatherLog(BaseSensor, Base):
         }
 
 
-class WeatherSent(BaseSensor, Base):
+class WeatherSent(Base):
     __tablename__ = 'weather_sent'
+    id = Column(Integer, primary_key=True)
     sent_time = Column(DateTime, default=datetime.datetime.utcnow)
     last_sent_id = Column(Integer, nullable=False)
