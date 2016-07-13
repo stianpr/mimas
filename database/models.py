@@ -76,3 +76,9 @@ class WeatherLog(BaseSensor, Base):
     wind_avg = Column(Float, nullable=False)
     wind_gust = Column(Float, nullable=False)
     wind_direction = Column(Integer, nullable=False)
+
+
+class WeatherSent(BaseSensor, Base):
+    __tablename__ = 'weather_sent'
+    sent_time = Column(DateTime, default=datetime.datetime.utcnow)
+    last_sent_id = Column(Integer, nullable=False)
