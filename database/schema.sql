@@ -58,6 +58,13 @@ CREATE TABLE weather_log (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE weather_sent (
+  id             SERIAL                    NOT NULL,
+  sent_time      timestamp with time zone  NOT NULL DEFAULT now(),
+  last_sent_id   integer                   NOT NULL,
+  PRIMARY KEY (id)
+);
+
 CREATE TABLE motion_log (
   id               SERIAL NOT NULL,
   camera           integer,
@@ -146,7 +153,8 @@ CREATE OR REPLACE VIEW logger_all AS
       ON p.hour = w.hour AND p.minute = w.minute
     INNER JOIN logger_direction d
       ON p.hour = d.hour AND p.minute = d.minute
-  ORDER BY 1 DESC, 2 DESC;
+  ORDER BY 1 DESC, 2 DESC
+  LIMIT 60;
 
 
 DROP TRIGGER IF EXISTS trgr_sensor_pressure_change ON sensors_pressure;
