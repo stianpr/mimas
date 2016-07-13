@@ -77,6 +77,18 @@ class WeatherLog(BaseSensor, Base):
     wind_gust = Column(Float, nullable=False)
     wind_direction = Column(Integer, nullable=False)
 
+    def to_dict(self):
+        return {
+            'reading_date': self.reading_time,
+            'outdoor_humidity': self.humidity,
+            'outdoor_temp': self.temperature,
+            'abs_pressure': self.pressure,
+            'wind_avarage_ms': self.wind_avg,
+            'wind_gust_ms': self.wind_gust,
+            'wind_direction': self.wind_direction,
+            'rain_total': self.precipitation,
+        }
+
 
 class WeatherSent(BaseSensor, Base):
     __tablename__ = 'weather_sent'
