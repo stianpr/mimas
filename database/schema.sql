@@ -78,7 +78,10 @@ CREATE TABLE motion_log (
 
 CREATE OR REPLACE VIEW logger_pressure AS
   SELECT
-    EXTRACT(hour from reading_time) AS hour,
+    CASE WHEN EXTRACT(hour from reading_time) = 0
+      THEN 24
+      ELSE EXTRACT(hour from reading_time)
+    END AS hour,
     EXTRACT(minute from reading_time) AS minute,
     avg(pressure)
   FROM sensors_pressure
@@ -87,7 +90,10 @@ CREATE OR REPLACE VIEW logger_pressure AS
 
 CREATE OR REPLACE VIEW logger_temperature AS
   SELECT
-    EXTRACT(hour from reading_time) AS hour,
+    CASE WHEN EXTRACT(hour from reading_time) = 0
+      THEN 24
+      ELSE EXTRACT(hour from reading_time)
+    END AS hour,
     EXTRACT(minute from reading_time) AS minute,
     avg(temperature)
   FROM sensors_temperature
@@ -96,7 +102,10 @@ CREATE OR REPLACE VIEW logger_temperature AS
 
 CREATE OR REPLACE VIEW logger_humidity AS
   SELECT
-    EXTRACT(hour from reading_time) AS hour,
+    CASE WHEN EXTRACT(hour from reading_time) = 0
+      THEN 24
+      ELSE EXTRACT(hour from reading_time)
+    END AS hour,
     EXTRACT(minute from reading_time) AS minute,
     avg(humidity)
   FROM sensors_humidity
@@ -105,7 +114,10 @@ CREATE OR REPLACE VIEW logger_humidity AS
 
 CREATE OR REPLACE VIEW logger_precipitation AS
   SELECT
-    EXTRACT(hour from reading_time) AS hour,
+    CASE WHEN EXTRACT(hour from reading_time) = 0
+      THEN 24
+      ELSE EXTRACT(hour from reading_time)
+    END AS hour,
     EXTRACT(minute from reading_time) AS minute,
     sum(total)
   FROM sensors_precipitation
@@ -114,7 +126,10 @@ CREATE OR REPLACE VIEW logger_precipitation AS
 
 CREATE OR REPLACE VIEW logger_wind AS
   SELECT
-    EXTRACT(hour from reading_time) AS hour,
+    CASE WHEN EXTRACT(hour from reading_time) = 0
+      THEN 24
+      ELSE EXTRACT(hour from reading_time)
+    END AS hour,
     EXTRACT(minute from reading_time) AS minute,
     avg(speed),
     max(speed)
@@ -124,7 +139,10 @@ CREATE OR REPLACE VIEW logger_wind AS
 
 CREATE OR REPLACE VIEW logger_direction AS
   SELECT
-    EXTRACT(hour from reading_time) AS hour,
+    CASE WHEN EXTRACT(hour from reading_time) = 0
+      THEN 24
+      ELSE EXTRACT(hour from reading_time)
+    END AS hour,
     EXTRACT(minute from reading_time) AS minute,
     avg(direction)
   FROM sensors_direction
