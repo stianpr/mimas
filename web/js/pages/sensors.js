@@ -4,6 +4,7 @@ import setupFixedHeader from '../fixed-header';
 import Switchable from '../switchable';
 import WindSpeed from '../sensors/windspeed';
 import WindDirection from '../sensors/winddirection';
+import WindChill from '../sensors/windchill';
 import Temperature from '../sensors/temperature';
 import Pressure from '../sensors/pressure';
 import Precipitation from '../sensors/precipitation';
@@ -31,7 +32,10 @@ export default React.createClass({
         <WindDirection />
         <ul>
           <li>
-            <Temperature />
+            <Switchable>
+              <Temperature />
+              <WindChill />
+            </Switchable>
           </li>
           <li>
             <Switchable>
