@@ -26,9 +26,12 @@ export default React.createClass({
 
   render () {
     return (
-      <div className="data">
-        <h3>{this.state.pressure}</h3>
-        <span>hba</span>
+      <div className="component pressure">
+        <h2>Trykk</h2>
+        <div className="data">
+          <h3>{this.state.pressure}</h3>
+          <span>hba</span>
+        </div>
       </div>
     );
   },

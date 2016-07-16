@@ -28,9 +28,12 @@ export default React.createClass({
     const precipitation = parseFloat(this.state.precipitation).toFixed(1);
 
     return (
-      <div className="data">
-        <h3>{precipitation}</h3>
-        <span>mm</span>
+      <div className="component precipitation">
+        <h2>Regn</h2>
+        <div className="data">
+          <h3>{precipitation}</h3>
+          <span>mm</span>
+        </div>
       </div>
     );
   },

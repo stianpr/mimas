@@ -1,7 +1,7 @@
 import React from 'react';
 
 import setupFixedHeader from '../fixed-header';
-import Component from '../component';
+import Switchable from '../switchable';
 import WindSpeed from '../sensors/windspeed';
 import WindDirection from '../sensors/winddirection';
 import Temperature from '../sensors/temperature';
@@ -27,43 +27,27 @@ export default React.createClass({
   render () {
     return (
       <div className="content">
-        <Component name='wind' title="Vind">
-          <WindSpeed />
-          <WindDirection />
-        </Component>
+        <WindSpeed />
+        <WindDirection />
         <ul>
           <li>
-            <Component name='temperature' title="Temperatur">
-              <Temperature />
-            </Component>
+            <Temperature />
           </li>
           <li>
-            <Component name='humidity' title="Fuktighet">
+            <Switchable>
               <Humidity />
-            </Component>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <Component name='precipitation' title="Regn (sist time)">
-              <Precipitation />
-            </Component>
-          </li>
-          <li>
-            <Component name='dewpoint' title="Duggpunkt">
               <DewPoint />
-            </Component>
+            </Switchable>
           </li>
         </ul>
         <ul>
           <li>
-            <Component name='pressure' title="Trykk">
-              <Pressure />
-            </Component>
+            <Precipitation />
           </li>
-          <li>&nbsp;</li>
+          <li>
+            <Pressure />
+          </li>
         </ul>
-
       </div>
     );
   },

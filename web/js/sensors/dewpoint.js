@@ -48,9 +48,12 @@ export default React.createClass({
     }
 
     return (
-      <div className="data">
-        <h3>{dewPoint}</h3>
-        <span>&deg;C</span>
+      <div className="component dewpoint">
+        <h2>Duggpunkt</h2>
+        <div className="data">
+          <h3>{dewPoint}</h3>
+          <span>&deg;C</span>
+        </div>
       </div>
     );
   },

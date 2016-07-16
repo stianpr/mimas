@@ -63,10 +63,12 @@ export default React.createClass({
     const direction = getDirection(parseInt(this.state.degrees, 10));
 
     return (
-      <div className="compass">
-        <h3>{direction.abbr}</h3>
-        <p>{direction.text}</p>
-        <div className="arrow" style={directionStyle}></div>
+      <div className="component windspeed">
+        <div className="compass">
+          <h3>{direction.abbr}</h3>
+          <p>{direction.text}</p>
+          <div className="arrow" style={directionStyle}></div>
+        </div>
       </div>
     );
   },

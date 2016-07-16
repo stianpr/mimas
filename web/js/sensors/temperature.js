@@ -28,9 +28,12 @@ export default React.createClass({
     const temperature = parseFloat(this.state.temperature).toFixed(1);
 
     return (
-      <div className="data">
-        <h3>{temperature}</h3>
-        <span>&deg;C</span>
+      <div className="component temperature">
+        <h2>Temperatur</h2>
+        <div className="data">
+          <h3>{temperature}</h3>
+          <span>&deg;C</span>
+        </div>
       </div>
     );
   },

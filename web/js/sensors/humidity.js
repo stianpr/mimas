@@ -28,9 +28,12 @@ export default React.createClass({
     const humidity = parseFloat(this.state.humidity).toFixed(1);
 
     return (
-      <div className="data">
-        <h3>{humidity}</h3>
-        <span>%</span>
+      <div className="humidity">
+        <h2>Fuktighet</h2>
+        <div className="data">
+          <h3>{humidity}</h3>
+          <span>%</span>
+        </div>
       </div>
     );
   },

@@ -63,22 +63,25 @@ export default React.createClass({
     const gustText = getSpeedText(this.state.gust);
 
     return (
-      <ul>
-        <li>
-          <div className="data">
-            <h3>{speed}</h3>
-            <span>m/s</span>
-          </div>
-          <p>{speedText}</p>
-        </li>
-        <li>
-          <div className="data">
-            <h3>{gust}</h3>
-            <span>m/s</span>
-          </div>
-          <p>{gustText}</p>
-        </li>
-      </ul>
+      <div className="component wind">
+        <h2>Vind</h2>
+        <ul>
+          <li>
+            <div className="data">
+              <h3>{speed}</h3>
+              <span>m/s</span>
+            </div>
+            <p>{speedText}</p>
+          </li>
+          <li>
+            <div className="data">
+              <h3>{gust}</h3>
+              <span>m/s</span>
+            </div>
+            <p>{gustText}</p>
+          </li>
+        </ul>
+      </div>
     );
   },
 });
