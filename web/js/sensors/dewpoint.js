@@ -41,7 +41,7 @@ export default React.createClass({
     let dewPoint = 0;
 
     if (!this.state.humidity || temperature < 0) {
-      dewPoint = '~'
+      dewPoint = '0.0'
     }
     else {
       dewPoint = parseFloat((b * formula)  / (a - formula)).toFixed(1);
