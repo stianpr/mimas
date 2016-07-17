@@ -1,5 +1,5 @@
 export const speeds = [
-  {speed: 0.0, text: 'Stille'},
+  {speed: 0.0, text: 'Stille vind'},
   {speed: 0.3, text: 'Flau vind'},
   {speed: 1.6, text: 'Svak vind'},
   {speed: 3.4, text: 'Lett bris'},

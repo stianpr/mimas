@@ -1,16 +1,8 @@
 import React from 'react';
 
 import sensorStore from '../stores/sensor';
-import { speeds } from '../constants/wind';
+import { getSpeedText } from '../utils/wind';
 
-
-function getSpeedText (speed) {
-  const foundObj = speeds.reverse().find(obj => {
-    return speed >= obj.speed;
-  });
-
-  return foundObj ? foundObj.text : '';
-}
 
 export default React.createClass({
   listener: null,
@@ -36,7 +28,7 @@ export default React.createClass({
 
   getInitialState () {
     return {
-      speed: 10.9,
+      speed: 0,
       gust: 0,
     };
   },
