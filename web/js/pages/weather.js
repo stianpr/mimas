@@ -1,10 +1,13 @@
 import React from 'react';
 
+import DateSpan from '../datespan';
+
+
 export default React.createClass({
   render () {
     return (
-      <div class="content">
-        <p>Coming soon…</p>
+      <div className="content">
+        <DateSpan />
       </div>
     );
   },

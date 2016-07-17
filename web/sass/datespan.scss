@@ -1,0 +1,17 @@
+.datespan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    font-size: 1.5rem;
+  }
+
+  span  {
+    margin-left: 1rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+
+    border-bottom: solid 1px red;
+  }
+}
