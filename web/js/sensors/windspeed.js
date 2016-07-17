@@ -1,11 +1,11 @@
 import React from 'react';
 
 import sensorStore from '../stores/sensor';
-import { speedTexts } from '../constants/wind';
+import { speeds } from '../constants/wind';
 
 
 function getSpeedText (speed) {
-  const foundObj = speedTexts.reverse().find(obj => {
+  const foundObj = speeds.reverse().find(obj => {
     return speed >= obj.speed;
   });
 

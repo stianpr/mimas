@@ -1,4 +1,4 @@
-export const speedTexts = [
+export const speeds = [
   {speed: 0.0, text: 'Stille'},
   {speed: 0.3, text: 'Flau vind'},
   {speed: 1.6, text: 'Svak vind'},
@@ -13,3 +13,22 @@ export const speedTexts = [
   {speed: 28.5, text: 'Sterk storm'},
   {speed: 32.7, text: 'Orkan'},
 ];
+
+export const directions = [
+    {direction: 11.25, abbr: 'N', text: 'Nord'},
+    {direction: 33.75, abbr: 'NNØ', text: 'Nord-Nordøst'},
+    {direction: 56.25, abbr: 'NØ', text: 'Nordøst'},
+    {direction: 78.75, abbr: 'ØNØ', text: 'Øst-Nordøst'},
+    {direction: 101.25, abbr: 'Ø', text: 'Øst'},
+    {direction: 123.75, abbr: 'ØSØ', text: 'Øst Sørøst'},
+    {direction: 146.25, abbr: 'SØ', text: 'Sørøst'},
+    {direction: 168.75, abbr: 'SSØ', text: 'Sør-Sørøst'},
+    {direction: 191.25, abbr: 'S', text: 'Sør'},
+    {direction: 213.75, abbr: 'SSV', text: 'Sør Sørvest'},
+    {direction: 236.25, abbr: 'SV', text: 'Sørvest'},
+    {direction: 258.75, abbr: 'VSV', text: 'Vest Sørvest'},
+    {direction: 281.25, abbr: 'V', text: 'Vest'},
+    {direction: 303.75, abbr: 'VNV', text: 'Vest Nordvest'},
+    {direction: 326.25, abbr: 'NV', text: 'Nordvest'},
+    {direction: 348.75, abbr: 'NNV', text: 'Nord Nordvest'},
+]
