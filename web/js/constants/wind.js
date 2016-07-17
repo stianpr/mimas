@@ -1,0 +1,15 @@
+export const speedTexts = [
+  {speed: 0.0, text: 'Stille'},
+  {speed: 0.3, text: 'Flau vind'},
+  {speed: 1.6, text: 'Svak vind'},
+  {speed: 3.4, text: 'Lett bris'},
+  {speed: 5.5, text: 'Laber bris'},
+  {speed: 8.0, text: 'Frisk bris'},
+  {speed: 10.8, text: 'Liten kuling'},
+  {speed: 13.9, text: 'Stiv kuling'},
+  {speed: 17.2, text: 'Sterk kuling'},
+  {speed: 20.8, text: 'Liten storm'},
+  {speed: 24.5, text: 'Full storm'},
+  {speed: 28.5, text: 'Sterk storm'},
+  {speed: 32.7, text: 'Orkan'},
+];
