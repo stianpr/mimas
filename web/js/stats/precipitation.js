@@ -9,7 +9,7 @@ export default React.createClass({
         <h2>Nedbør</h2>
         <ul>
           <li>
-            <span>totalt</span>
+            <span className="type">totalt</span>
             <h3>{sum}</h3>
             <span>mm</span>
           </li>

@@ -10,12 +10,12 @@ export default React.createClass({
         <h2>Temperatur</h2>
         <ul>
           <li>
-            <span>min</span>
+            <span className="type">min</span>
             <h3>{min}</h3>
             <span>&deg;C</span>
           </li>
           <li>
-            <span>maks</span>
+            <span className="type">maks</span>
             <h3>{max}</h3>
             <span>&deg;C</span>
           </li>

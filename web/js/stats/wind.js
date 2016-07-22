@@ -15,22 +15,19 @@ export default React.createClass({
         <h2>Vind</h2>
         <ul>
           <li>
-            <span>snitt</span>
+            <span className="type">snitt</span>
             <h3>{avg}</h3>
-            <span>m/s</span>
-            <span>{avgText}</span>
+            <span>m/s &ndash; {avgText}</span>
           </li>
           <li>
-            <span>maks</span>
+            <span className="type">maks</span>
             <h3>{max}</h3>
-            <span>m/s</span>
-            <span>{maxText}</span>
+            <span>m/s &ndash; {maxText}</span>
           </li>
           <li>
-            <span>retning</span>
+            <span className="type">retning</span>
             <h3>{this.props.direction}</h3>
-            <span>&deg;</span>
-            <span>{directionText.text}</span>
+            <span>grader {directionText.text}</span>
           </li>
         </ul>
       </div>
