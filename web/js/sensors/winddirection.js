@@ -1,21 +1,9 @@
 import React from 'react';
 
 import sensorStore from '../stores/sensor';
-import { directions } from '../constants/wind';
+import { getDirection } from '../utils/wind';
 import '../../sass/winddirection.scss';
 
-
-function getDirection (degrees) {
-  const found = directions.find(obj => {
-    return degrees < obj.direction;
-  });
-
-  if (!found) {
-    return directions[0];
-  }
-
-  return found;
-}
 
 export default React.createClass({
   listener: null,

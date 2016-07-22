@@ -1,4 +1,4 @@
-import { speeds } from '../constants/wind';
+import { directions, speeds } from '../constants/wind';
 
 
 export function getSpeedText (speed) {
@@ -7,4 +7,17 @@ export function getSpeedText (speed) {
   });
 
   return foundObj ? foundObj.text : '';
+}
+
+
+export function getDirection (degrees) {
+  const found = directions.find(obj => {
+    return degrees < obj.direction;
+  });
+
+  if (!found) {
+    return directions[0];
+  }
+
+  return found;
 }
