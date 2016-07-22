@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getSpeedText } from '../utils/wind';
+import { getDirection, getSpeedText } from '../utils/wind';
 
 export default React.createClass({
   render () {
@@ -8,6 +8,7 @@ export default React.createClass({
     const avg = parseFloat(this.props.avg).toFixed(1);
     const maxText = getSpeedText(max);
     const avgText = getSpeedText(avg);
+    const directionText = getDirection(this.props.direction);
 
     return (
       <div className="weather">
@@ -24,6 +25,12 @@ export default React.createClass({
             <h3>{max}</h3>
             <span>m/s</span>
             <span>{maxText}</span>
+          </li>
+          <li>
+            <span>retning</span>
+            <h3>{this.props.direction}</h3>
+            <span>&deg;</span>
+            <span>{directionText.text}</span>
           </li>
         </ul>
       </div>
