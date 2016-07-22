@@ -1,14 +1,8 @@
 import React from 'react';
 
-import sensorStore from '../stores/sensor';
 import { getSpeedText } from '../utils/wind';
 
 export default React.createClass({
-  shouldComponentUpdate (nextProps, nextState) {
-    return (nextProps.max !== this.props.max ||
-        nextProps.avg !== this.props.avg);
-  },
-
   render () {
     const max = parseFloat(this.props.max).toFixed(1);
     const avg = parseFloat(this.props.avg).toFixed(1);
@@ -20,14 +14,16 @@ export default React.createClass({
         <h2>Vind</h2>
         <ul>
           <li>
+            <span>snitt</span>
             <h3>{avg}</h3>
             <span>m/s</span>
-            <span>{avgText} i snitt.</span>
+            <span>{avgText}</span>
           </li>
           <li>
+            <span>maks</span>
             <h3>{max}</h3>
             <span>m/s</span>
-            <span>{maxText} på maks.</span>
+            <span>{maxText}</span>
           </li>
         </ul>
       </div>
