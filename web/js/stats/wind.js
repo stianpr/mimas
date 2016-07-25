@@ -8,6 +8,7 @@ export default React.createClass({
     const avg = parseFloat(this.props.avg).toFixed(1);
     const maxText = getSpeedText(max);
     const avgText = getSpeedText(avg);
+    const direction = parseInt(this.props.direction, 10);
     const directionText = getDirection(this.props.direction);
 
     return (
@@ -26,7 +27,7 @@ export default React.createClass({
           </li>
           <li>
             <span className="type">retning</span>
-            <h3>{this.props.direction}</h3>
+            <h3>{direction}</h3>
             <span>grader {directionText.text}</span>
           </li>
         </ul>
