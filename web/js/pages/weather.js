@@ -11,9 +11,9 @@ import '../../sass/weather.scss';
 
 export default React.createClass({
   componentWillMount () {
-    // weatherStore.get().then(data => {
-    //   this.setState(data);
-    // });
+    weatherStore.get().then(data => {
+      this.setState(data);
+    });
   },
 
   getInitialState () {
