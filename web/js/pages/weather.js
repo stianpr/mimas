@@ -11,19 +11,19 @@ import '../../sass/weather.scss';
 
 export default React.createClass({
   componentWillMount () {
-    weatherStore.get().then(data => {
+    weatherStore.on('data', data => {
       this.setState(data);
     });
   },
 
   getInitialState () {
     return {
-      wind_avg: 10.2,
-      wind_max: 24.0,
-      wind_direction_avg: 265,
-      temp_min: -2.9,
-      temp_max: 28.2,
-      precipitation_sum: 22.2,
+      wind_avg: 0.0,
+      wind_max: 0.0,
+      wind_direction_avg: 0,
+      temp_min: 0.0,
+      temp_max: 0.0,
+      precipiation_sum: 0.0,
     };
   },
 
@@ -36,7 +36,7 @@ export default React.createClass({
           max={this.state.wind_max}
           direction={this.state.wind_direction_avg} />
         <Temperature min={this.state.temp_min} max={this.state.temp_max} />
-        <Precipitation sum={this.state.precipitation_sum} />
+        <Precipitation sum={this.state.precipiation_sum} />
       </div>
     );
   },

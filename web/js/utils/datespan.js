@@ -17,7 +17,7 @@ export const dates = [
   },
   {
     title: 'I går',
-    from: moment().format(DATE_FORMAT),
-    to: moment().subtract(1, 'day').format(DATE_FORMAT),
+    from: moment().subtract(1, 'day').format(DATE_FORMAT),
+    to: moment().format(DATE_FORMAT),
   },
 ];

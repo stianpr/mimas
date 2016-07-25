@@ -1,16 +1,20 @@
 import React from 'react';
 
 import { dates } from './utils/datespan';
-
 import Dialog from './dialog';
+import weatherStore from './stores/weather';
 
 import '../sass/datespan.scss';
 
 
 export default React.createClass({
+  componentWillMount () {
+    weatherStore.get(dates[2].from, dates[2].to);
+  },
+
   getInitialState () {
     return {
-      selected: dates[0],
+      selected: dates[2],
       visibleDialog: false,
     };
   },
@@ -22,6 +26,8 @@ export default React.createClass({
   onItemSelect (item) {
     this.toggleDialog();
     this.setState({selected: item});
+
+    weatherStore.get(item.from, item.to);
   },
 
   render () {
