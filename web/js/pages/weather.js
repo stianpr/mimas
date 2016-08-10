@@ -10,10 +10,16 @@ import '../../sass/weather.scss';
 
 
 export default React.createClass({
+  listener: null,
+
   componentWillMount () {
-    weatherStore.on('data', data => {
+    weatherStore.on('data', this.listener = data => {
       this.setState(data);
     });
+  },
+
+  componentWillUnmount () {
+    weatherStore.off('data', this.listener);
   },
 
   getInitialState () {

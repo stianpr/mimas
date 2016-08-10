@@ -16,13 +16,13 @@ export const speeds = [
 
 export const directions = [
     {direction: 11.25, abbr: 'N', text: 'Nord'},
-    {direction: 33.75, abbr: 'NNØ', text: 'Nord-Nordøst'},
+    {direction: 33.75, abbr: 'NNØ', text: 'Nord Nordøst'},
     {direction: 56.25, abbr: 'NØ', text: 'Nordøst'},
-    {direction: 78.75, abbr: 'ØNØ', text: 'Øst-Nordøst'},
+    {direction: 78.75, abbr: 'ØNØ', text: 'Øst Nordøst'},
     {direction: 101.25, abbr: 'Ø', text: 'Øst'},
     {direction: 123.75, abbr: 'ØSØ', text: 'Øst Sørøst'},
     {direction: 146.25, abbr: 'SØ', text: 'Sørøst'},
-    {direction: 168.75, abbr: 'SSØ', text: 'Sør-Sørøst'},
+    {direction: 168.75, abbr: 'SSØ', text: 'Sør Sørøst'},
     {direction: 191.25, abbr: 'S', text: 'Sør'},
     {direction: 213.75, abbr: 'SSV', text: 'Sør Sørvest'},
     {direction: 236.25, abbr: 'SV', text: 'Sørvest'},

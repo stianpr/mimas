@@ -8,7 +8,7 @@ export const dates = [
   {
     title: 'I forrige uke',
     from: moment().startOf('week').subtract(7, 'day').format(DATE_FORMAT),
-    to: moment().startOf('week').subtract(1, 'day').format(DATE_FORMAT),
+    to: moment().startOf('week').format(DATE_FORMAT),
   },
   {
     title: 'I denne uken',
@@ -19,5 +19,10 @@ export const dates = [
     title: 'I går',
     from: moment().subtract(1, 'day').format(DATE_FORMAT),
     to: moment().format(DATE_FORMAT),
+  },
+  {
+    title: 'I dag',
+    from: moment().format(DATE_FORMAT),
+    to: moment().add(1, 'day').format(DATE_FORMAT),
   },
 ];
