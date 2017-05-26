@@ -22,6 +22,5 @@ TBA
 ## TODO
 
 - Complete the Makefile
-- Remove web directory (moved to another repo)
 - Write documentation for how the logging works
 - Write documentation for how to install/setup
